@@ -13,6 +13,7 @@ body {
     font-family: 'Red Hat Text', sans-serif;
     font-size: 16px;
     overflow-x: hidden;
+    background-color: #fff;
 }
 
 main {
@@ -81,6 +82,7 @@ nav a {
     font-family: inherit;
     border-radius: 10px;
     border: none;
+    cursor: pointer;
 }
 
 .navbtn {
@@ -249,6 +251,7 @@ input::placeholder {
     padding-left: 0;
     margin-bottom: 40px;
     margin-top: -25px;
+    cursor: pointer;
 }
 
 .filled {
