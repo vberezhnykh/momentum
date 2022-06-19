@@ -53,20 +53,23 @@
                     <figure>
                         <div class="steps-image">
                             <img class="logo-1" src="assets/svg/bicycle-logo.svg" alt="bicycle-logo">
+                            <img class="logo-1-mobile" src="assets/svg/bicycle-mobile.svg" alt="">
                         </div>
-                        <figcaption>Tell us what you want to do</figcaption>
+                        <figcaption class="figcaption-one">Tell us what you want to do</figcaption>
                     </figure>
                     <figure>
                         <div class="steps-image">
                             <img class="logo-2" src="assets/svg/calendar.svg" alt="calendar-logo">
+                            <img class="logo-2-mobile" src="assets/svg/calendar-mobile.svg" alt="">
                         </div>
-                        <figcaption>Share us preferable dates</figcaption>
+                        <figcaption class="figcaption-two">Share us preferable dates</figcaption>
                     </figure>
                     <figure>
                         <div class="steps-image">
                             <img class="logo-3" src="assets/svg/airplane.svg" alt="airplane-logo">
+                            <img class="logo-3-mobile" src="assets/svg/airplane-mobile.svg" alt="">
                         </div>
-                        <figcaption>We will give you recommendations</figcaption>
+                        <figcaption class="figcaption-three">We will give you recommendations</figcaption>
                     </figure>
                 </div>
             </div>   
@@ -75,24 +78,29 @@
             <div class="destinations-block">
                 <h2>POPULAR DESTINATIONS</h2>
                 <div class="destinations-figures">
-                    <figure>
-                        <div class="destinations-image">
-                            <img src="assets/img/spain.jpg" alt="Spain">
+                    <figure class="destinations-image-one">
+                        <div >
+                            <img class="destination-desktop" src="assets/img/spain.jpg" alt="Spain">
+                            <img class="destination-mobile" src="assets/img/spain-mobile.jpg" alt="">
                         </div>
-                        <figcaption class="destination-caption">SPAIN</figcaption>
+                        <figcaption class="destination-caption one">SPAIN</figcaption>
                     </figure>
-                    <figure>
-                        <div class="destinations-image">
+                    <figure class="destinations-image-two">
+                        <div>
                             <img src="assets/img/japan.jpg" alt="Japan">
                         </div>
-                        <figcaption class="destination-caption">JAPAN</figcaption>
+                        <figcaption class="destination-caption two">JAPAN</figcaption>
                     </figure>
-                    <figure>
-                        <div class="destinations-image">
+                    <figure class="destinations-image-three">
+                        <div>
                             <img src="assets/img/USA.jpg" alt="USA">
                         </div>
-                        <figcaption class="destination-caption">USA</figcaption>
+                        <figcaption class="destination-caption three">USA</figcaption>
                     </figure>
+                </div>
+                <div class="arrow-container">
+                    <div class="arrow-left"><img src="assets/svg/arrow-left.svg" alt=""></div>
+                    <div class="arrow-right"><img src="assets/svg/arrow-right.svg" alt=""></div>
                 </div>
                 <div class="indicator">
                     <ul>
@@ -101,7 +109,8 @@
                         <li><div class="filled not-filled"></div></li>
                     </ul>
                 </div>
-                <button class="btn-wrapper button destinationsbtn"><img src="assets/svg/bi_arrow-right.svg" alt="arrow-right">Find More</button>
+                <button class="btn-wrapper button destinationsbtn"><img class="arrow-desktop" src="assets/svg/bi_arrow-right.svg" alt="arrow-right">
+                                                                   <img class="arrow-mobile" src="assets/svg/bi-arrow-right-mobile.svg">Find More</button>
             </div>
         </section>
        <section id="stories">
@@ -114,8 +123,8 @@
                         <div class="text-block">
                             <h3>10 Photos of Attractive Thailand</h3>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation 
-                                ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur 
-                                sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit... <a href="">Read More</a></p>
+                                ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla <span class="hide-text"> pariatur. Excepteur 
+                                sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</span>.Lorem ipsum dolor sit a<span class="hide-text">met, consectetur adipiscing elit</span>... <a href="">Read More</a></p>
                         </div>
                     </div>
                     <div class="story-card">
@@ -123,8 +132,8 @@
                         <div class="text-block">
                             <h3>Canyonlands National Park, Utah</h3>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation 
-                                ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint 
-                                occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit... <a href="">Read More</a></p>
+                                ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla <span class="hide-text"> pariatur. Excepteur 
+                                sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</span>.Lorem ipsum dolor sit a<span class="hide-text">met, consectetur adipiscing elit</span>... <a href="">Read More</a></p>
                         </div>
                     </div>
                     <div class="story-card">
@@ -132,8 +141,8 @@
                         <div class="text-block">
                             <h3>I left my heart in the Mountains!</h3>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation 
-                                ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint 
-                                occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit... <a href="">Read More</a></p>
+                                ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla <span class="hide-text"> pariatur. Excepteur 
+                                sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</span>.Lorem ipsum dolor sit a<span class="hide-text">met, consectetur adipiscing elit</span>... <a href="">Read More</a></p>
                         </div>
                     </div>
                     <div class="story-card">
@@ -141,16 +150,18 @@
                         <div class="text-block">
                             <h3>The Longest journey in my life!</h3>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation 
-                                ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint 
-                                occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit... <a href="">Read More</a></p>
+                                ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla <span class="hide-text"> pariatur. Excepteur 
+                                sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</span>.Lorem ipsum dolor sit a<span class="hide-text">met, consectetur adipiscing elit</span>... <a href="">Read More</a></p>
                         </div>
                     </div>
                 </div>
-                <button class="button storiesbtn"><img src="assets/svg/bi_arrow-right.svg" alt="arrow-right">See More</button>
+                <button class="button storiesbtn"><img class="arrow-desktop" src="assets/svg/bi_arrow-right.svg" alt="arrow-right">
+                                                  <img class="arrow-mobile" src="assets/svg/bi-arrow-right-mobile.svg" alt="">See More</button>
             </div>
         </section>
         <div class="background-image-2"><img src="assets/img/background-img-2.jpg" alt=""></div>
-        <div class="footer-background"></div>
+        <div class="background-image-2-mobile"><img src="assets/img/background-image-2-mobile.jpg" alt=""></div>
+        <div class="footer-overlay"></div>
     </main>
    <footer>
         <div class="footer-text">All Rights Reserved © Travel Portal</div>
