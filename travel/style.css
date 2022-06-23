@@ -85,9 +85,16 @@ nav a {
     cursor: pointer;
 }
 
+.button:active {
+    transform: translateY(4px);
+}
+
 .navbtn {
     width: 103px;
     height: 41px;
+}
+
+.navbtn:hover {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 2px 3px rgba(13, 96, 111, 0.16);
 }
 
@@ -140,6 +147,9 @@ input::placeholder {
     position: relative;
     bottom: 77px;
     left: 644px;
+}
+
+.previewbtn:hover {
     box-shadow: 0px 0px 3px rgba(13, 96, 111, 0.08), 0px 2px 3px rgba(13, 96, 111, 0.16);
 }
 
@@ -241,12 +251,8 @@ input::placeholder {
 .indicator {
     width: 80px;
     margin: 0 auto;
-}
-
-.indicator ul {
     display: flex;
     justify-content: space-between;
-    list-style: none;
     gap: 10px;
     padding-left: 0;
     margin-bottom: 40px;
@@ -271,8 +277,11 @@ input::placeholder {
     font-size: 24px;
     width: 228px;
     height: 59px;
-    box-shadow: 0px 0px 3px rgba(13, 96, 111, 0.08), 0px 2px 3px rgba(13, 96, 111, 0.16);
     padding: 0;
+}
+
+.destinationsbtn:hover {
+    box-shadow: 0px 0px 3px rgba(13, 96, 111, 0.08), 0px 2px 3px rgba(13, 96, 111, 0.16);
 }
 
 .btn-wrapper {
@@ -344,14 +353,21 @@ input::placeholder {
     font-weight: bold;
 }
 
+.text-block a:hover {
+    color: #F2785C;
+}
+
 .storiesbtn {
     width: 228px;
     display: flex;
     margin: 10px auto 0;
     padding: 10px 32px;
     font-size: 24px;
-    box-shadow: 0px 0px 3px rgba(13, 96, 111, 0.08), 0px 2px 3px rgba(13, 96, 111, 0.16);
     align-items: center;
+}
+
+.storiesbtn:hover {
+    box-shadow: 0px 0px 3px rgba(13, 96, 111, 0.08), 0px 2px 3px rgba(13, 96, 111, 0.16);
 }
 
 .storiesbtn img {
@@ -381,20 +397,37 @@ footer {
     margin-top: 83px;
 }
 
+.personal-pages {
+    display: flex;
+    width: 20%;
+    padding-left: 30px;
+    justify-content: space-around;
+    height: 60px;
+}
+
+.personal-pages img {
+    height: 95%;
+    padding-top: 5px;
+}
+
 .footer-text {
-    width: 82%;
+    width: 60%;
     color: white;
-    padding-left: 590px;
+    padding-left: 302px;
 }
 
 .social-media {
-    width: 18%;
+    width: 15%;
+    padding-left: 26px;
 }
 
 .social-media ul {
     display: flex;
     gap: 20px;
     padding-left: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 5px;
 }
 
 .social-media li {
