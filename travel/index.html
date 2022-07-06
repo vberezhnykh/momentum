@@ -10,22 +10,34 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Aleo:ital,wght@0,400;0,700;1,400;1,700&family=Red+Hat+Text:wght@500&display=swap" rel="stylesheet">
     <link rel="icon" href="assets/svg/favicon.svg">
+    <script src="index.js"></script>
 </head>
 <body>
-    <div class="wrapper">
+    <div class="body-overlay" id="body-overlay" onclick="closeNav()"></div>
     <header class="header">
         <img class="main-logo" src="assets/svg/travel-portal-logo.svg" alt="Travel Portal Logo">
         <img class="mobile-logo" src="assets/svg/travel-portal-mobile.svg" alt="travel-portal-logo">
         <nav class="nav">
-           <ul class="nav-list">
+           <ul class="nav-list-desktop">
             <li class="nav-item"><a href="#preview">How It Works</a></li>
             <li class="nav-item"><a href="#steps">Plan Your Trip</a></li>
             <li class="nav-item"><a href="#destinations">Destinations</a></li>
             <li class="nav-item"><a href="#stories">Travel Stories</a></li>
-           </ul> 
+           </ul>
+            <div id="sidepanel" class="sidepanel">
+                <img src="assets/svg/close-button.svg" alt="" onclick="closeNav()">
+                <ul class="nav-list-mobile">
+                    <li class="nav-item" onclick="closeNav()"><a href="#preview">How It Works</a></li>
+                    <li class="nav-item" onclick="closeNav()"><a href="#destinations">Destinations</a></li>
+                    <li class="nav-item" onclick="closeNav()"><a href="#steps">Plan Your Trip</a></li>
+                    <li class="nav-item" onclick="closeNav()"><a href="#stories">Travel Stories</a></li>
+                    <li class="nav-item" onclick="closeNav()">Account</li>
+                    <li class="nav-item" onclick="closeNav()"><a href="#social-media">Social Media</a></li>
+                </ul>
+            </div>
         </nav>
         <button class="button navbtn">Login</button>
-        <img class="mobile-list" src="assets/svg/sandwich-button.svg" alt="sandwich-button">
+        <img class="mobile-list" src="assets/svg/sandwich-button.svg" alt="sandwich-button" onclick="openNav()">
     </header>
     <div class="header-background"></div>
     <main>
@@ -104,8 +116,8 @@
                 </div>
                 <div class="indicator">
                     <ul>
-                        <li><div class="filled not-filled"></div></li>
                         <li><div class="filled"></div></li>
+                        <li><div class="filled not-filled"></div></li>
                         <li><div class="filled not-filled"></div></li>
                     </ul>
                 </div>
@@ -124,7 +136,7 @@
                             <h3>10 Photos of Attractive Thailand</h3>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation 
                                 ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla <span class="hide-text"> pariatur. Excepteur 
-                                sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</span>.Lorem ipsum dolor sit a<span class="hide-text">met, consectetur adipiscing elit</span>... <a href="">Read More</a></p>
+                                sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</span>. Lorem ipsum dolor sit a<span class="hide-text">met, consectetur adipiscing elit</span>... <a href="">Read More</a></p>
                         </div>
                     </div>
                     <div class="story-card">
@@ -165,7 +177,7 @@
     </main>
    <footer>
         <div class="footer-text">All Rights Reserved © Travel Portal</div>
-        <div class="social-media">
+        <div class="social-media" id="social-media">
             <ul>
                 <li><a href=""><img src="assets/svg/instagram.svg" alt=""></a></li>
                 <li><a href=""><img src="assets/svg/youtube.svg" alt=""></a></li>
@@ -173,6 +185,5 @@
             </ul>
         </div>
     </footer>
-    </div>
 </body>
 </html>
