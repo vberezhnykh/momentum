@@ -216,17 +216,10 @@ nav a {
     cursor: pointer;
 }
 
-.button:active {
-    transform: translateY(4px);
-}
-
 .navbtn {
     /* width: 103px; */
     width: 7.15%;
     height: 41px;
-}
-
-.navbtn:hover {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 2px 3px rgba(13, 96, 111, 0.16);
 }
 
@@ -354,10 +347,8 @@ input::placeholder {
     font-size: 24px; /* добавить резиновый размер шрифта */
     position: relative;
     bottom: 77px;
+    /* left: 644px; */
     left: 72.19%;
-}
-
-.previewbtn:hover {
     box-shadow: 0px 0px 3px rgba(13, 96, 111, 0.08), 0px 2px 3px rgba(13, 96, 111, 0.16);
 }
 
@@ -706,6 +697,7 @@ input::placeholder {
 .indicator ul {
     display: flex;
     justify-content: space-between;
+    list-style: none;
     gap: 10px;
     padding-left: 0;
     margin-bottom: 40px;
@@ -745,6 +737,7 @@ input::placeholder {
     font-size: 24px;
     width: 228px;
     height: 59px;
+    box-shadow: 0px 0px 3px rgba(13, 96, 111, 0.08), 0px 2px 3px rgba(13, 96, 111, 0.16);
     padding: 0;
 }
 
@@ -754,10 +747,6 @@ input::placeholder {
         width: 92px;
         height: 30px;
     }
-
-.destinationsbtn:hover {
-    box-shadow: 0px 0px 3px rgba(13, 96, 111, 0.08), 0px 2px 3px rgba(13, 96, 111, 0.16);
-
 }
 
 .btn-wrapper {
@@ -900,19 +889,15 @@ input::placeholder {
     font-weight: bold;
 }
 
-.text-block a:hover {
-    color: #F2785C;
-}
-
 .storiesbtn {
     width: 228px;
     display: flex;
     margin: 10px auto 0;
     padding: 10px 32px;
     font-size: 24px;
+    box-shadow: 0px 0px 3px rgba(13, 96, 111, 0.08), 0px 2px 3px rgba(13, 96, 111, 0.16);
     align-items: center;
 }
-
 
 @media (max-width: 391px) {
     .storiesbtn {
@@ -922,9 +907,6 @@ input::placeholder {
         padding: 10px;
         margin-top: -5px;
     }
-
-.storiesbtn:hover {
-    box-shadow: 0px 0px 3px rgba(13, 96, 111, 0.08), 0px 2px 3px rgba(13, 96, 111, 0.16);
 }
 
 .storiesbtn img {
@@ -989,9 +971,9 @@ footer {
 }
 
 .footer-text {
-    width: 60%;
+    width: 82%;
     color: white;
-    padding-left: 302px;
+    padding-left: 590px;
 }
 
 @media(max-width: 391px) {
@@ -1001,8 +983,7 @@ footer {
 }
 
 .social-media {
-    width: 15%;
-    padding-left: 26px;
+    width: 18%;
 }
 
 @media(max-width: 391px) {
@@ -1016,9 +997,6 @@ footer {
     display: flex;
     gap: 20px;
     padding-left: 0;
-    margin-top: 0;
-    margin-bottom: 0;
-    padding-top: 5px;
 }
 
 @media (max-width: 391px) {
