@@ -1,1 +1,11 @@
-console.log('1. Верстка валидная +10; \n2. Верстка семантическая +20;\n3. Верстка соответствует макету +48\n4. Требования к css +12;\n5. Интерактивность реализуемая через css +20\nИтого: 110 баллов (максимальный балл 100)')
+function openNav() {
+    document.getElementById("sidepanel").style.right = '0px';
+    document.getElementById("body-overlay").style.display = 'unset';
+}
+
+function closeNav() {
+    document.getElementById("sidepanel").style.right = '-165px';
+    document.getElementById("body-overlay").style.display = "none";
+}
+
+console.log('1. Верстка соответствует макету. Ширина экрана 390px +48\n2. Ни на одном из разрешений до 320px включительно не появляется горизонтальная полоса прокрутки. Весь контент страницы при этом сохраняется не обрезается и не удаляется +0\n3. На ширине экрана 390px и меньше реализовано адаптивное меню +22\nОценка: 70 баллов')
