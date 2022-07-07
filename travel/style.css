@@ -8,6 +8,7 @@ html, body {
 
 html {
     scroll-behavior: smooth;
+    /* max-width: 1440px; */
 }
 
 body {
@@ -17,6 +18,7 @@ body {
     font-family: 'Red Hat Text', sans-serif;
     font-size: 16px;
     background-color: #fff;
+    overflow-y: hidden;
 }
 
 @media (max-width: 391px) {
@@ -80,7 +82,6 @@ main {
         height: 32px;
         margin-left: 16px;
         margin-top: 43px;
-   /*      max-width: 391px; */
     }
     
 }
@@ -89,7 +90,8 @@ main {
     background-color: #F2785C;
     box-shadow: 0px 4px 4px rgba(13, 96, 111, 0.5);
     height: 90px;
-    width: 1440px;
+    width: 100%;
+    max-width: 1440px;
     position: absolute;
     top: 0px;
     opacity: 70%;
@@ -107,10 +109,15 @@ main {
 
 
 .main-logo {
-    width: 216px;
+    /* width: 216px; */
+    width: 15%;
     height: 31px;
-    margin-left: 120px;
-    margin-right: 158px;
+    /* margin-left: 120px; */
+    /* margin-left: 8.33%; */
+    margin-left: 8.33vw;
+    /* margin-right: 158px; */
+    /* margin-right: 10.97%; */
+    margin-right: 10.97vw;
     align-self: flex-start;
     margin-top: 25px;
 }
@@ -129,13 +136,13 @@ main {
 
 .nav {
     display: flex;
+    width: 50.21%;
 }
 
 .nav-list-desktop {
     display: flex;
     justify-content: space-between;
     list-style: none;
-    margin-right: 196px;
     padding-inline-start: 0;
     width: 527px;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
@@ -164,6 +171,18 @@ main {
 @media (min-width: 391px) {
     .sidepanel {
         display: none;
+    }
+}
+
+@media (max-width: 1090px) {
+    .nav-item {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 740px) {
+    .nav-item {
+        font-size: 12px;
     }
 }
 
@@ -198,7 +217,8 @@ nav a {
 }
 
 .navbtn {
-    width: 103px;
+    /* width: 103px; */
+    width: 7.15%;
     height: 41px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 2px 3px rgba(13, 96, 111, 0.16);
 }
@@ -214,6 +234,11 @@ nav a {
     top: 0px;
     z-index: -2;
 }
+
+/* .background-img-1 img {
+    max-width: 100%;
+    object-fit: fill;
+} */
 
 @media (min-width: 391px) {
     .background-img-1-mobile {
@@ -234,12 +259,15 @@ nav a {
 }
 
 .preview-card {
-    width: 892px;
+    /* width: 892px; */
+    width: 61.94%;
     height: 422px;
     color: white;
     position: relative;
-    left: 120px;
-    top: 32px;
+    /* left: 120px; */
+    left: 8.33%;
+    /* top: 32px; */
+    top: 2vmax;
 }
 
 @media (max-width: 391px) {
@@ -253,7 +281,7 @@ nav a {
 
 h1 {
     font-family: Aleo;
-    font-size: 80px;
+    font-size: 80px; /* добавить резиновый размер шрифта */
     color: #fff;
     margin-top: 0;
     margin-bottom: 32px;
@@ -269,7 +297,7 @@ h1 {
     font-family: Aleo;
     font-weight: bold;
     font-style: italic;
-    font-size: 20px;
+    font-size: 20px; /* добавить резиновый размер шрифта */
     margin-bottom: 46px;
 }
 
@@ -280,7 +308,8 @@ h1 {
 }
 
 .input {
-    width: 892px;
+    /* width: 892px; */
+    width: 100%;
     height: 95px;
     border-radius: 16px;
     opacity: 0.7;
@@ -302,7 +331,7 @@ input::placeholder {
     color: #F2785C;
     font-family: Aleo;
     font-style: italic;
-    font-size: 24px;
+    font-size: 24px; /* добавить резиновый размер шрифта */
 }
 
 @media (max-width: 391px) {
@@ -312,12 +341,14 @@ input::placeholder {
 }
 
 .previewbtn {
-    width: 228px;
+    /* width: 228px; */
+    width: 25.56%;
     height: 59px;
-    font-size: 24px;
+    font-size: 24px; /* добавить резиновый размер шрифта */
     position: relative;
     bottom: 77px;
-    left: 644px;
+    /* left: 644px; */
+    left: 72.19%;
     box-shadow: 0px 0px 3px rgba(13, 96, 111, 0.08), 0px 2px 3px rgba(13, 96, 111, 0.16);
 }
 
@@ -332,10 +363,10 @@ input::placeholder {
 }
 
 .steps-block {
-    width: 1177px;
+    width: 81.73%/* 1177px */;
     height: 247px;
     position: relative;
-    left: 131px;
+    left: 9.09%/* 131px */;
     margin-top: 334px;
 }
 
@@ -367,10 +398,12 @@ input::placeholder {
 .steps-figures {
     display: flex;
     justify-content: space-between;
+    width: 100%;
 }
 
 .steps-figures figure:first-child {
-    padding-right: 230px;
+    /* padding-right: 230px; */
+    width: 21%;
 }
 
 @media (max-width: 391px) {
@@ -380,8 +413,21 @@ input::placeholder {
     }
 }
 
+.steps-figures figure:nth-child(2) {
+    /* width: 18.86%; */
+    position: relative;
+    left: 3%;
+}
+
+@media (max-width: 391px) {
+    .steps-figures figure:nth-child(2) {
+        left: 1%;
+    }
+}
+
 .steps-figures figure:last-child {
-    padding-left: 161px;
+    /* padding-left: 161px; */
+    width: 26.93%;
 }
 
 @media (max-width: 391px) {
@@ -517,7 +563,7 @@ input::placeholder {
 }
 
 .destinations-block {
-    width: 2520px;
+    width: 175%/* 2520px */;
     height: 1042px;
     position: relative;
     left: -540px;
