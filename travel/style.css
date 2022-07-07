@@ -682,8 +682,7 @@ input::placeholder {
     display: flex;
     justify-content: space-between;
     position: relative;
-    /* bottom: 143px; */
-    top: -33vh;
+    bottom: 143px;
     margin-left: 5px;
     margin-right: 5px;
 }
