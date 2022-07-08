@@ -229,16 +229,168 @@ nav a {
     }
 }
 
+.login-menu {
+    width: 45.28%;
+    height: 660px;
+    background: linear-gradient(177.09deg, #FFFFFF 6.15%, #0D606F 202.69%);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 16px;
+    position: absolute;
+    top: 8vmax/* 30% */;
+    left: 27.4vmax;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-menu h4 {
+    font-family: Aleo;
+    font-size: 32px;
+    font-weight: bold;
+    color: #0D606F;
+    margin-top: 25px;
+    margin-bottom: 30px;
+}
+
+.sign-in-btn {
+    width: 86.15%;
+    height: 8.48%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Red Hat Text';
+    font-size: 20px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0px 0px 3px rgba(13, 96, 111, 0.08), 0px 2px 3px rgba(13, 96, 111, 0.16);
+}
+
+.facebook {
+    background-color: #1877F2;
+    color: #fff;
+    margin-bottom: 3%;
+}
+
+.google {
+    background-color: #fff;
+    color: #0D606F;
+    margin-bottom: 30px;
+}
+
+.sign-in-btn img {
+    margin-right: 2.85%;
+}
+
+.line-container {
+    display: flex;
+    align-items: center;
+    width: 84.84%;
+    justify-content: space-between;
+    color: rgba(13, 96, 111, 0.5);
+    font-size: 20px;
+    font-family: Aleo;
+    font-weight: 700;
+}
+
+.line {
+    background-color: rgba(13, 96, 111, 0.5);
+    width: 46.60%;
+    height: 1px;
+}
+
+.email-container {
+    width: 84.84%;
+    height: 11.81%;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.email-container p {
+    font-family: Aleo;
+    font-size: 16px;
+    margin: 0;
+    margin-bottom: 5px;
+}
+
+.email-container input {
+    width: 100%;
+    height: 69.23%;
+    border-radius: 10px;
+    border: none;
+    box-shadow: inset 0px 0px 3px rgba(13, 96, 111, 0.08), inset 0px 2px 3px rgba(13, 96, 111, 0.16);
+    font-family: Aleo;
+    font-size: 16px;
+    font-style: italic;
+    color: #F2785C;
+    padding-left: 2%;
+}
+
+.password-container {
+    width: 84.84%;
+    height: 11.81%;
+    margin-bottom: 25px;
+}
+
+.password-container p {
+    font-family: Aleo;
+    font-size: 16px;
+    margin: 0;
+    margin-bottom: 5px;
+}
+
+.password-container input {
+    width: 100%;
+    height: 69.23%;
+    border-radius: 10px;
+    border: none;
+    box-shadow: inset 0px 0px 3px rgba(13, 96, 111, 0.08), inset 0px 2px 3px rgba(13, 96, 111, 0.16);
+    color: #F2785C;
+    font-size: 16px;
+    padding-left: 2%;
+}
+
+.general {
+    background-color: #0D606F;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.forgot-password {
+    font-family: Aleo;
+    font-size: 15px;
+    font-weight: bold;
+    color:#0D606F;
+    margin: 0;
+    margin-bottom: 26px;
+}
+
+.forgot-password a:visited {
+    color: #0D606F;
+}
+
+.bottom {
+    width: 86.15%;
+    margin-bottom: 20px;
+}
+
+.register {
+    font-family: Aleo;
+    font-size: 15px;
+    font-weight: bold;
+    color: rgba(13, 96, 111, 0.5);
+    margin: 0;
+}
+
+.register a:visited {
+    color: #0D606F;
+}
+
 .background-img-1 {
     position: absolute;
     top: 0px;
     z-index: -2;
 }
-
-/* .background-img-1 img {
-    max-width: 100%;
-    object-fit: fill;
-} */
 
 @media (min-width: 391px) {
     .background-img-1-mobile {
@@ -682,8 +834,7 @@ input::placeholder {
     display: flex;
     justify-content: space-between;
     position: relative;
-    /* bottom: 143px; */
-    top: -33vh;
+    bottom: 143px;
     margin-left: 5px;
     margin-right: 5px;
 }
