@@ -13,7 +13,7 @@
     <script src="index.js"></script>
 </head>
 <body>
-    <div class="body-overlay" id="body-overlay" onclick="closeNav()"></div>
+    <div class="body-overlay" id="body-overlay" onclick="closeNav(), closePopUpMenu()"></div>
     <header class="header">
         <img class="main-logo" src="assets/svg/travel-portal-logo.svg" alt="Travel Portal Logo">
         <img class="mobile-logo" src="assets/svg/travel-portal-mobile.svg" alt="travel-portal-logo">
@@ -36,29 +36,30 @@
                 </ul>
             </div>
         </nav>
-        <button class="button navbtn">Login</button>
+        <button class="button navbtn" onclick="openPopUpMenu()">Login</button>
         <img class="mobile-list" src="assets/svg/sandwich-button.svg" alt="sandwich-button" onclick="openNav()">
-        <div class="login-menu">
-            <h4>Log in to your account</h4>
-            <button class="sign-in-btn facebook"><img src="assets/svg/facebook.svg" alt="Facebook logo">Sign in with Facebook</button>
-            <button class="sign-in-btn google"><img src="assets/svg/google.svg" alt="Google logo">Sign in with Google</button>
-            <div class="line-container">
+        <div class="login-menu" id="login-menu">
+            <h4 id="popup-heading">Log in to your account</h4>
+            <button id="facebook" class="sign-in-btn facebook"><img src="assets/svg/facebook.svg" alt="Facebook logo">Sign in with Facebook</button>
+            <button id="google" class="sign-in-btn google"><img src="assets/svg/google.svg" alt="Google logo">Sign in with Google</button>
+            <div id="line-container" class="line-container">
                 <div class="line"></div>
                 <div>or</div>
                 <div class="line"></div>
             </div>
             <div class="email-container">
                 <p>E-mail</p>
-                <input type="email">
+                <input id="login" type="email">
             </div>
             <div class="password-container">
                 <p>Password</p>
-                <input type="password">
+                <input id="password" type="password">
             </div>
-            <button class="sign-in-btn general">Sign In</button>
-            <p class="forgot-password"><a href="">Forgot Your Password?</a></p>
+            <button id="general" class="sign-in-btn general" onclick="showAlert()">Sign In</button>
+            <p id="forgot-password" class="forgot-password"><a href="">Forgot Your Password?</a></p>
             <div class="line bottom"></div>
-            <p class="register">Don't have an account? <a href="">Register</a></p>
+            <p id="register1" class="register">Don't have an account? <span onclick="changeMenu()">Register</span></p>
+            <p id="register2" class="register">Already have an account? <span onclick="changeToLoginMenu()">Log in</span></p>
         </div>
     </header>
     <div class="header-background"></div>

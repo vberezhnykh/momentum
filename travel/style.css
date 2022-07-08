@@ -21,6 +21,18 @@ body {
     overflow-y: hidden;
 }
 
+.body-overlay {
+    width: 1440px;
+    height: 3735px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: block;
+    z-index: 1;
+    animation: overlay-transition 0.5s linear;
+}
+
 @media (max-width: 391px) {
     html, body {
         overflow-x: hidden;
@@ -216,6 +228,10 @@ nav a {
     cursor: pointer;
 }
 
+.button:active {
+    transform: translateY(4px);
+}
+
 .navbtn {
     /* width: 103px; */
     width: 7.15%;
@@ -236,12 +252,13 @@ nav a {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 16px;
     position: absolute;
-    top: 8vmax/* 30% */;
-    left: 27.4vmax;
+    left: 395px;
+    top: -670px;
     z-index: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
+    transition: 0.5s;
 }
 
 .login-menu h4 {
@@ -264,6 +281,10 @@ nav a {
     border: none;
     border-radius: 10px;
     box-shadow: 0px 0px 3px rgba(13, 96, 111, 0.08), 0px 2px 3px rgba(13, 96, 111, 0.16);
+}
+
+.sign-in-btn:active {
+    transform: translateY(4px);
 }
 
 .facebook {
@@ -301,7 +322,7 @@ nav a {
 
 .email-container {
     width: 84.84%;
-    height: 11.81%;
+    height: 78px;
     margin-top: 10px;
     margin-bottom: 20px;
 }
@@ -315,7 +336,7 @@ nav a {
 
 .email-container input {
     width: 100%;
-    height: 69.23%;
+    height: 54px;
     border-radius: 10px;
     border: none;
     box-shadow: inset 0px 0px 3px rgba(13, 96, 111, 0.08), inset 0px 2px 3px rgba(13, 96, 111, 0.16);
@@ -328,7 +349,7 @@ nav a {
 
 .password-container {
     width: 84.84%;
-    height: 11.81%;
+    height: 78px;
     margin-bottom: 25px;
 }
 
@@ -341,7 +362,7 @@ nav a {
 
 .password-container input {
     width: 100%;
-    height: 69.23%;
+    height: 54px;
     border-radius: 10px;
     border: none;
     box-shadow: inset 0px 0px 3px rgba(13, 96, 111, 0.08), inset 0px 2px 3px rgba(13, 96, 111, 0.16);
@@ -354,6 +375,7 @@ nav a {
     background-color: #0D606F;
     color: #fff;
     margin-bottom: 10px;
+    height: 54px;
 }
 
 .forgot-password {
@@ -382,8 +404,13 @@ nav a {
     margin: 0;
 }
 
-.register a:visited {
-    color: #0D606F;
+.register span {
+    color:#0D606F;
+    text-decoration: underline;
+}
+
+#register2 {
+    display: none;
 }
 
 .background-img-1 {
