@@ -13,6 +13,15 @@ function openPopUpMenu() {
     document.getElementById("body-overlay").style.display = 'unset';
 }
 
+function openMobilePopUpMenu() {
+    document.getElementById('login-menu').style.cssText = `
+    top: 0;
+    left: 0;
+    width: 100%;
+    `
+    document.getElementById("body-overlay").style.display = 'unset';
+}
+
 function closePopUpMenu() {
     document.getElementById('login-menu').style.top = '-670px';
     document.getElementById("body-overlay").style.display = "none"
@@ -27,6 +36,14 @@ function closePopUpMenu() {
     document.getElementById('login-menu').style.height = '660px';
 }
 
+function closeMobilePopUpMenu() {
+    document.getElementById('login-menu').style.cssText = `
+    top: -670px;
+    left: 395px;
+    width: 45.28%;
+    `
+}
+
 function showAlert() {
     let message = document.getElementById('login').value + ' ' + document.getElementById('password').value;
     alert(message);
@@ -35,9 +52,6 @@ function showAlert() {
 function changeMenu() {
    document.getElementById('popup-heading').textContent = 'Create account';
    document.getElementById('facebook').style.display = 'none';
-   /* document.getElementById('login').style.height = '54px'; */
-   /* document.getElementById('password').style.height = '54px'
-   document.getElementById('general').style.height = '54px'; */
    document.getElementById('google').style.display = 'none';
    document.getElementById('line-container').style.display = 'none';
    document.getElementById('forgot-password').style.display = 'none';

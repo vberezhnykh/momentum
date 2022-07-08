@@ -22,7 +22,7 @@ body {
 }
 
 .body-overlay {
-    width: 1440px;
+    width: 100vw;
     height: 3735px;
     position: absolute;
     top: 0;

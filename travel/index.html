@@ -13,7 +13,7 @@
     <script src="index.js"></script>
 </head>
 <body>
-    <div class="body-overlay" id="body-overlay" onclick="closeNav(), closePopUpMenu()"></div>
+    <div class="body-overlay" id="body-overlay" onclick="closeNav(), closePopUpMenu(), closeMobilePopUpMenu()"></div>
     <header class="header">
         <img class="main-logo" src="assets/svg/travel-portal-logo.svg" alt="Travel Portal Logo">
         <img class="mobile-logo" src="assets/svg/travel-portal-mobile.svg" alt="travel-portal-logo">
@@ -31,7 +31,7 @@
                     <li class="nav-item" onclick="closeNav()"><a href="#destinations">Destinations</a></li>
                     <li class="nav-item" onclick="closeNav()"><a href="#steps">Plan Your Trip</a></li>
                     <li class="nav-item" onclick="closeNav()"><a href="#stories">Travel Stories</a></li>
-                    <li class="nav-item" onclick="closeNav()">Account</li>
+                    <li class="nav-item" onclick="closeNav(), openMobilePopUpMenu()">Account</li>
                     <li class="nav-item" onclick="closeNav()"><a href="#social-media">Social Media</a></li>
                 </ul>
             </div>
