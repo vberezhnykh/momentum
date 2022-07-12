@@ -1,0 +1,125 @@
+@font-face {
+    font-family: 'Arial-MT';
+    src: url("assets/fonts/Arial-MT.woff");
+}
+
+body {
+    min-width: 480px;
+    min-height: 100vh;
+    font-family: 'Roboto', sans-serif;
+    color: #fff;
+    text-align: center;
+    transition: background-image 1s ease-in-out;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* min-height: 100vh; */
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    height: 30vh;
+    min-height: 220px;
+    width: 97%; //при большей ширине появляется горизонтальный скролл. Выяснить почему;
+    padding: 20px;
+}
+
+.player {
+    border: 3px solid black;
+    width: 20%;
+}
+
+.weather {
+    border: 3px solid black;
+    width: 20%;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 40vh;
+}
+
+.time {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Robot', sans-serif;
+    font-weight: bold;
+    font-size: 100px;
+}
+
+.date {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+}
+
+.greeting-container {
+    width: 99vw;
+    height: 20%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: stretch;
+    align-items: center;
+    font-size: 35px;
+}
+
+.greeting {
+    flex: 1;
+    padding: 10px;
+    text-align: right;
+}
+
+.input {
+    flex: 1;
+    background-color: transparent;
+    color: white;
+    max-width: 50%;
+    text-align: left;
+    border: 0;
+    outline: 0;
+}
+
+.input::placeholder {
+    color:#fff;
+    opacity: 0.5;
+}
+
+.slider {
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    width: 95%;
+    top: 50%;
+}
+
+.nextSlide, .previousSlide {
+    cursor: pointer;
+}
+
+.footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 20vh;
+    /* background-color: blue; */
+}
+
+.quote {
+    border: 3px solid black;
+    width: 40%;
+}
+
+.author {
+    border: 3px solid black;
+    width: 15%;
+} 

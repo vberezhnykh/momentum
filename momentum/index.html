@@ -5,9 +5,36 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 </head>
-<body>
+<body onload="showTime()">
+    <div class="wrapper">
+        <header class="header">
+            <div class="player">Player</div>
+            <div class="weather">Weather</div>
+        </header>
+        <main class="main">
+            <time class="time"></time>
+            <date class="date"></date>
+            <div class="greeting-container">
+                <span class="greeting">Greeting</span>
+                <input class="input" type="text" placeholder="[Enter name]">
+            </div> 
+            <div class="slider">
+                <img class="previousSlide" src="assets/slider-prev.svg" alt="">
+                <img class="nextSlide" src="assets/slider-next.svg" alt="">
+            </div>
+        </main>
+        <footer class="footer">
+            <button class="change_quote">Change</button>
+            <div class="quote">Quote</div>
+            <div class="author">Author</div>
+        </footer>
+    </div> 
     <script src="script.js"></script>
 </body>
 </html>
