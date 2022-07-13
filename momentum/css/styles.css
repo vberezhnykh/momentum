@@ -34,14 +34,55 @@ body {
 }
 
 .weather {
-    border: 3px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    
     width: 20%;
+    min-height: 180px;
+}
+
+.temperature {
+    font-size: 30px;
+}
+
+.description {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    column-gap: 12px;
+    font-size: 25px;
+}
+
+.icon {
+    font-size: 44px;
+}
+
+.city {
+    width: 95%; //при большей ширине выходит за пределы блока
+    height: 35px;
+    padding: 5px;
+    font-size: 25px;
+    line-height: 30px;
+    color: #fff;
+    border: 0;
+    outline: 0;
+    background-color: transparent;
+    border-bottom: 2px solid #fff;
+}
+
+.city::placeholder {
+    font-size: 25px;
+    color: #fff;
+    opacity: 0.5;
 }
 
 .main {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 10px;
     align-items: center;
     height: 40vh;
 }
@@ -53,6 +94,7 @@ body {
     font-family: 'Robot', sans-serif;
     font-weight: bold;
     font-size: 100px;
+    letter-spacing: 10px;
 }
 
 .date {

@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/owfont-regular.css">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,7 +16,12 @@
     <div class="wrapper">
         <header class="header">
             <div class="player">Player</div>
-            <div class="weather">Weather</div>
+            <div class="weather">
+                <input type="text" class="city" value="Moscow" placeholder="Enter name of the city">
+                <i class="icon owf"></i>
+                <div class="temperature"></div>
+                <div class="description"></div>
+            </div>
         </header>
         <main class="main">
             <time class="time"></time>
