@@ -95,11 +95,10 @@ function getSlidePrev() {
 
 document.querySelector('.previousSlide').addEventListener('click', getSlidePrev);
 
-const weatherIcon = document.querySelector('.icon');
-const temperature = document.querySelector('.temperature');
-const weatherDescription = document.querySelector('.description');
-
 async function getWeather() {
+    const weatherIcon = document.querySelector('.icon');
+    const temperature = document.querySelector('.temperature');
+    const weatherDescription = document.querySelector('.description');
     const city = document.querySelector('.city');
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.value}&lang=eт&appid=fab720c19713c688933ff49eb63ac915&units=metric`
     const res = await fetch (url);
@@ -119,3 +118,70 @@ addEventListener('load', getWeather)
 
 document.querySelector('.city').addEventListener('change', getWeather);
 
+let randomQuoteNum;
+
+function randomQuote(min, max) {
+    randomQuoteNum = Math.floor(Math.random() * (max - min + 1)) + 1;
+}
+
+window.addEventListener('load', randomQuote(0,9));
+
+async function getQuotes() {
+    const quotes = 'quote.json';
+    const res = await fetch(quotes);
+    const data = await res.json();
+    
+    document.querySelector('.quote').textContent = data[`${randomQuoteNum}`].text;
+    document.querySelector('.author').textContent = data[`${randomQuoteNum}`].author;
+}
+
+window.addEventListener('load', getQuotes);
+
+function changeQuote() {
+    let dataLength = 9;
+    randomQuoteNum === 9 ? randomQuoteNum = 0 : randomQuoteNum += 1;
+    getQuotes();
+}
+
+document.querySelector('.change_quote').addEventListener('click', changeQuote);
+
+const audio = new Audio();
+let isPlay = false;
+
+function playAudio() {
+    if(!isPlay) {
+        audio.src = ''//ссылка на аудио файл;
+        audio.currentTime = 0;
+        audio.play();
+        isPlay = true;
+    } else {
+        audio.pause();
+        isPlay = false;
+    }
+}
+
+const button = document.querySelector('.player-icon');
+/* function toggleBtn() {
+    button.classList.toggle('pause');
+}
+button.addEventListener('click', toggleBtn) */
+
+function togglePause() {
+    if(isPlay) {
+        button.classList.add('pause');
+    } else {
+        button.classList.remove('pause');
+    }
+}
+
+let playNum = 0;
+
+function playNext() {
+    playNum += 1; //возможно нудно переписать с учетом того, что дойдем до нуля
+    playAudio();
+}
+
+function playPrev() {
+    playNum -= 1;
+    playAudio();
+}

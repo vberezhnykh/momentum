@@ -15,7 +15,13 @@
 <body onload="showTime()">
     <div class="wrapper">
         <header class="header">
-            <div class="player">Player</div>
+            <div class="player">
+                <div class="player-controls">
+                    <button class="player-previous"></button>
+                    <button class="player-icon play"></button>
+                    <button class="player-next"></button>
+                </div>
+            </div>
             <div class="weather">
                 <input type="text" class="city" value="Moscow" placeholder="Enter name of the city">
                 <i class="icon owf"></i>
@@ -31,14 +37,14 @@
                 <input class="input" type="text" placeholder="[Enter name]">
             </div> 
             <div class="slider">
-                <img class="previousSlide" src="assets/slider-prev.svg" alt="">
-                <img class="nextSlide" src="assets/slider-next.svg" alt="">
+                <img class="previousSlide" src="assets/svg/slider-prev.svg" alt="">
+                <img class="nextSlide" src="assets/svg/slider-next.svg" alt="">
             </div>
         </main>
         <footer class="footer">
-            <button class="change_quote">Change</button>
-            <div class="quote">Quote</div>
-            <div class="author">Author</div>
+            <button class="change_quote">CHANGE</button>
+            <div class="quote"></div>
+            <div class="author"></div>
         </footer>
     </div> 
     <script src="script.js"></script>
