@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 </head>
-<body onload="showTime()">
+<body>
     <div class="wrapper">
         <header class="header">
             <div class="player">
@@ -21,9 +21,10 @@
                     <button class="player-icon play"></button>
                     <button class="player-next"></button>
                 </div>
+                <ul class="play-list"></ul>
             </div>
             <div class="weather">
-                <input type="text" class="city" value="Moscow" placeholder="Enter name of the city">
+                <input type="text" class="city" value="Moscow" placeholder="Enter city">
                 <i class="icon owf"></i>
                 <div class="temperature"></div>
                 <div class="description"></div>
@@ -47,6 +48,6 @@
             <div class="author"></div>
         </footer>
     </div> 
-    <script src="script.js"></script>
+    <script type="module" src="script.js"></script>
 </body>
 </html>

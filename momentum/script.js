@@ -1,3 +1,5 @@
+import playList from "./playList.js";
+
 function showTime() {
     const date = new Date();
     const currentTime = date.toLocaleTimeString('ru-Ru');
@@ -6,6 +8,8 @@ function showTime() {
     showDate();
     showGreeting();
 }
+
+window.addEventListener('load', showTime)
 
 function showDate() {
     const date = new Date()
@@ -41,6 +45,11 @@ function showGreeting() {
     document.querySelector('.greeting').textContent = greetingText;
 }
 
+/* const greetingTranslation = {
+    russian: 'Доброе Утро',
+    english: 'Good Morning'
+} */
+
 function setLocalStorage() {
     const name = document.querySelector('.input');
     localStorage.setItem('name', name.value);
@@ -66,7 +75,7 @@ window.addEventListener('load', getRandomNum(1,20));
 function setBg() {
     const timeOfDayUpperCase = getTimeOfDay();
     const timeOfDay = timeOfDayUpperCase.toLowerCase();
-    bgNum = randomNum.toString().padStart(2, '0');
+    let bgNum = randomNum.toString().padStart(2, '0');
     const img = new Image();
     
     img.src = `https://raw.githubusercontent.com/vberezhnykh/momentum-images/assets/images/${timeOfDay}/${bgNum}.jpg`;
@@ -139,7 +148,7 @@ window.addEventListener('load', getQuotes);
 
 function changeQuote() {
     let dataLength = 9;
-    randomQuoteNum === 9 ? randomQuoteNum = 0 : randomQuoteNum += 1;
+    randomQuoteNum === dataLength ? randomQuoteNum = 0 : randomQuoteNum += 1;
     getQuotes();
 }
 
@@ -147,24 +156,29 @@ document.querySelector('.change_quote').addEventListener('click', changeQuote);
 
 const audio = new Audio();
 let isPlay = false;
+let playNum = 0;
+
 
 function playAudio() {
     if(!isPlay) {
-        audio.src = ''//ссылка на аудио файл;
+        audio.src = playList[playNum].src;
         audio.currentTime = 0;
         audio.play();
+        const playItem = document.querySelector(`.play-item:nth-child(${playNum + 1})`)
+        /* console.log(playItem) */
+        playItem.classList.add('play-item__active');
         isPlay = true;
     } else {
         audio.pause();
+        const playItem = document.querySelector(`.play-item:nth-child(${playNum + 1})`)
+        playItem.classList.remove('play-item__active');
         isPlay = false;
     }
 }
 
 const button = document.querySelector('.player-icon');
-/* function toggleBtn() {
-    button.classList.toggle('pause');
-}
-button.addEventListener('click', toggleBtn) */
+button.addEventListener('click', playAudio); 
+audio.addEventListener('ended', playNext)
 
 function togglePause() {
     if(isPlay) {
@@ -174,14 +188,47 @@ function togglePause() {
     }
 }
 
-let playNum = 0;
+button.addEventListener('click', togglePause)
+
 
 function playNext() {
-    playNum += 1; //возможно нудно переписать с учетом того, что дойдем до нуля
+    const playItem = document.querySelector(`.play-item:nth-child(${playNum + 1})`);
+    playItem.classList.remove('play-item__active')
+
+    if (playNum < 3) {
+        playNum += 1;
+    } else {
+        playNum = 0;
+        
+    } 
+    isPlay = false;
     playAudio();
 }
 
+const playerNext = document.querySelector('.player-next');
+playerNext.addEventListener('click', playNext)
+
 function playPrev() {
-    playNum -= 1;
+    const playItem = document.querySelector(`.play-item:nth-child(${playNum + 1})`);
+    playItem.classList.remove('play-item__active')
+    
+    if (playNum > 0) {
+        playNum -= 1;
+    } else {
+        playNum = 3;
+    }
+    isPlay = false;
     playAudio();
 }
+
+const playerPrev = document.querySelector('.player-previous');
+playerPrev.addEventListener('click', playPrev);
+
+
+const playListContainer = document.querySelector('.play-list');
+playList.forEach(el => {
+    const li = document.createElement('li');
+    li.classList.add('play-item');
+    li.textContent = el.title;
+    playListContainer.append(li);
+})
