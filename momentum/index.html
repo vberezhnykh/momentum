@@ -25,9 +25,18 @@
             </div>
             <div class="weather">
                 <input type="text" class="city" value="Moscow" placeholder="Enter city">
-                <i class="icon owf"></i>
-                <div class="temperature"></div>
-                <div class="description"></div>
+                <div class="weather__main-info">
+                    <i class="icon owf"></i>
+                    <div class="temperature_and_description_container">
+                        <div class="temperature"></div>
+                        <div class="description"></div>
+                    </div> 
+                </div>
+                <div class="weather__extra-info">
+                    <div class="wind"></div>
+                    <div class="humidity"></div>
+                </div>
+                <span class="weather__provider">Provided by <a href="https://openweathermap.org/" target="_blank">OpenWeather</a></span>
             </div>
         </header>
         <main class="main">

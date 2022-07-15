@@ -52,14 +52,22 @@ function showGreeting() {
 
 function setLocalStorage() {
     const name = document.querySelector('.input');
+    const city = document.querySelector('.city');
+    localStorage.setItem('city', city.value);
     localStorage.setItem('name', name.value);
 }
 window.addEventListener('beforeunload', setLocalStorage);
 
 function getLocalStorage() {
     const name = document.querySelector('.input');
+    const city = document.querySelector('.city');
+
     if (localStorage.getItem('name')) {
         name.value = localStorage.getItem('name');
+    }
+
+    if (localStorage.getItem('city')) {
+        city.value = localStorage.getItem('city');
     }
 }
 window.addEventListener('load', getLocalStorage)
@@ -108,18 +116,23 @@ async function getWeather() {
     const weatherIcon = document.querySelector('.icon');
     const temperature = document.querySelector('.temperature');
     const weatherDescription = document.querySelector('.description');
+    const wind = document.querySelector('.wind');
+    const humidity = document.querySelector('.humidity');
     const city = document.querySelector('.city');
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.value}&lang=eт&appid=fab720c19713c688933ff49eb63ac915&units=metric`
     const res = await fetch (url);
     const data = await res.json();
     
     weatherIcon.className = 'icon owf'; //придумать как выводить ошибку, если город не введен
-    /* if (city === undefined) {
+   /* if (city === '') {
         weatherIcon.textContent = 'Error';
+        temperature.textContent = 'Error'
     } else { */
         weatherIcon.classList.add(`owf-${data.weather[0].id}`)
-        temperature.textContent = `${data.main.temp}°C`;
+        temperature.textContent = `${Math.round(data.main.temp)}°C`;
         weatherDescription.textContent = data.weather[0].description;
+        wind.textContent = `Wind speed: ${data.wind.speed} m/s`
+        humidity.textContent = `Humidity: ${data.main.humidity} %`;
     /* }  */
 }
 

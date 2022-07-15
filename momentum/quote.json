@@ -1,5 +1,45 @@
 [
     {
+        "text": "'Ask not what your country can do for you; ask what you can do for your country.'",
+        "author": "John Kennedy"
+    },
+    {
+        "text": "'Eighty percent of success is showing up.'",
+        "author": "Woody Allen"
+    },
+    {
+        "text": "'Genius is one percent inspiration and ninety-nine percent perspiration.'",
+        "author": "Thomas Edison"
+    },
+    {
+        "text": "'Houston, we have a problem.'",
+        "author": "Jim Lovell"
+    },
+    {
+        "text": "'I think therefore I am.'",
+        "author": "Rene Descartes"
+    },
+    {
+        "text": "'Life is like riding a bicycle. To keep your balance, you must keep moving.'",
+        "author": "Albert Einstein"
+    },
+    {
+        "text": "'Not all those who wander are lost.'",
+        "author": "J. R. R. Tolkein"
+    },
+    {
+        "text": "'Nothing is certain except for death and taxes.'",
+        "author": "Benjamin Franklin"
+    },
+    {
+        "text": "'What doesn't kill us makes us stronger.'",
+        "author": "Friedrich Nietzsche"
+    },
+    {
+        "text": "'Whatever you are, be a good one.'",
+        "author": "Abraham Lincoln"
+    }, 
+    {
         "text": "'Теория — это когда все известно, но ничего не работает. Практика — это когда все работает, но никто не знает почему. Мы же объединяем теорию и практику: ничего не работает... и никто не знает почему!'",
         "author": "Альберт Эйнштейн"
     },
