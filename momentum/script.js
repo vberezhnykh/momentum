@@ -176,9 +176,10 @@ function playAudio() {
     if(!isPlay) {
         audio.src = playList[playNum].src;
         audio.currentTime = 0;
+        document.querySelector('.songName').textContent = playList[playNum].title;
+        document.querySelector('.volume-percantage').style.width = '75%';
         audio.play();
         const playItem = document.querySelector(`.play-item:nth-child(${playNum + 1})`)
-        /* console.log(playItem) */
         playItem.classList.add('play-item__active');
         isPlay = true;
     } else {
@@ -190,6 +191,8 @@ function playAudio() {
 }
 
 const button = document.querySelector('.player-icon');
+const buttonNext = document.querySelector('.player-next');
+const buttonPrev = document.querySelector('.player-previous')
 button.addEventListener('click', playAudio); 
 audio.addEventListener('ended', playNext)
 
@@ -198,10 +201,19 @@ function togglePause() {
         button.classList.add('pause');
     } else {
         button.classList.remove('pause');
+        /* player.querySelector('.timeBar .length').textContent = '0:00';
+        player.querySelector('.timeBar .current').textContent = '0:00' */
     }
 }
 
+function togglePauseArrow() {
+    isPlay = true;
+    togglePause();
+}
+
 button.addEventListener('click', togglePause)
+buttonNext.addEventListener('click', togglePauseArrow)
+buttonPrev.addEventListener('click', togglePauseArrow)
 
 
 function playNext() {
@@ -212,7 +224,6 @@ function playNext() {
         playNum += 1;
     } else {
         playNum = 0;
-        
     } 
     isPlay = false;
     playAudio();
@@ -244,4 +255,59 @@ playList.forEach(el => {
     li.classList.add('play-item');
     li.textContent = el.title;
     playListContainer.append(li);
+})
+
+const player = document.querySelector('.player');
+const timeline = player.querySelector('.timeline');
+timeline.addEventListener('click', e => {
+    const timelineWidth = window.getComputedStyle(timeline).width;
+    const timeToSeek = e.offsetX / parseInt(timelineWidth) * audio.duration;
+    audio.currentTime = timeToSeek;
+}, false);
+
+setInterval(() => {
+    const progressBar = player.querySelector('.progress');
+    progressBar.style.width = audio.currentTime / audio.duration * 100 + '%';
+    player.querySelector('.timeBar .current').textContent = getTimeCodeFromNum(
+        audio.currentTime
+    );
+}, 500);
+
+function getTimeCodeFromNum (num) {
+    let seconds = parseInt(num);
+    let minutes = parseInt(seconds / 60);
+    seconds -= minutes * 60;
+    const hours = parseInt(minutes / 60);
+    minutes -= hours * 60;
+
+    if (hours === 0) return `${minutes}:${String(seconds % 60).padStart(2, 0)}`;
+    return `${String(hours).padStart(2, 0)}:${minutes}:${String(seconds % 60).padStart(2, 0)}`;
+}
+
+audio.addEventListener('loadeddata', () => {
+    player.querySelector('.timeBar .length').textContent = getTimeCodeFromNum(
+        audio.duration);
+        audio.volume = .75;
+}, false)
+
+const volumeSlider = player.querySelector('.volume-slider');
+volumeSlider.addEventListener('click', e => {
+    const sliderWidth = window.getComputedStyle(volumeSlider).width;
+    const newVolume = e.offsetX / parseInt(sliderWidth);
+    audio.volume = newVolume;
+    player.querySelector('.volume-percantage').style.width = newVolume * 100 + '%';
+}, false);
+
+let currentVolumePercantage = '';
+player.querySelector('.volume-button').addEventListener('click', () => {
+    const volumeEl = player.querySelector('.volume-button');
+    audio.muted = !audio.muted;
+    if (audio.muted) {
+        volumeEl.classList.add('volume-button_mute');
+        currentVolumePercantage = player.querySelector('.volume-percantage').style.width;
+        player.querySelector('.volume-percantage').style.width = '0%';
+    } else {
+        volumeEl.classList.remove('volume-button_mute');
+        player.querySelector('.volume-percantage').style.width = `${currentVolumePercantage}`;
+    }
 })
