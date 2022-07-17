@@ -17,7 +17,8 @@ body {
     flex-direction: column;
     justify-content: space-between;
     min-height: 100vh;
-    background-color: rgba(0, 0, 0, 0.3)
+    background-color: rgba(0, 0, 0, 0.3);
+    flex-wrap: nowrap;
 }
 
 .header {
@@ -169,17 +170,33 @@ body {
 
 .play-list {
     text-align: left;
-    padding-left: 40px;
+    padding-left: 0;
     margin-top: 8px;
     width: 85%;
 }
 
 .play-item {
     opacity: 0.7;
+    list-style: none;
+    background-image: url('../assets/svg/play.svg');
+    background-repeat: no-repeat;
+    text-indent: 25px;
+    margin-bottom: 4px;
+    cursor: pointer;
+    color: black;
+    background-color: white;
+    border-radius: 8px;
+}
+
+.play-item:hover {
+    opacity: 0.8;
 }
 
 .play-item__active {
     opacity: 1;
+    background-color: coral;
+    background-image: url('../assets/svg/pause.svg');
+    transition: 0.3s;
 }
 
 .weather {
@@ -229,7 +246,7 @@ body {
 }
 
 .weather__provider a {
-    color: orange;
+    color: coral;
     text-decoration: none;
 }
 
@@ -279,7 +296,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 30px;
+    font-size: 28px;
 }
 
 .greeting-container {
@@ -332,6 +349,11 @@ body {
     opacity: 1;
 }
 
+.nextSlide:active,
+.previousSlide:active {
+    transform: scale(1.1);
+}
+
 .footer {
     display: flex;
     flex-direction: column;
@@ -347,10 +369,15 @@ body {
   background-color: rgba(255, 255, 255, 0.3);
   border-radius: 50%;
   border: none;
+  cursor: pointer;
 }
 
 .change_quote:hover {
     background-color: rgba(255, 255, 255, 1);
+}
+
+.change_quote:active {
+    transform: scale(1.1);
 }
 
 .quote {

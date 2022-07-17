@@ -1,5 +1,6 @@
 import playList from "./playList.js";
 
+//1. Time and Date ==================================================//
 function showTime() {
     const date = new Date();
     const currentTime = date.toLocaleTimeString('ru-Ru');
@@ -20,6 +21,13 @@ function showDate() {
     }
     const currentDate = date.toLocaleDateString('en-En', options);
     document.querySelector('.date').textContent = currentDate;
+}
+
+//2. Greeting ==================================================//
+
+const greetingTranslation = {
+    russian: 'Добрый день',
+    english: 'Good afternoon'
 }
 
 function getTimeOfDay() {
@@ -45,11 +53,6 @@ function showGreeting() {
     document.querySelector('.greeting').textContent = greetingText;
 }
 
-/* const greetingTranslation = {
-    russian: 'Доброе Утро',
-    english: 'Good Morning'
-} */
-
 function setLocalStorage() {
     const name = document.querySelector('.input');
     const city = document.querySelector('.city');
@@ -72,6 +75,8 @@ function getLocalStorage() {
 }
 window.addEventListener('load', getLocalStorage)
 
+
+//3. Image slider==================================================//
 let randomNum;
 
 function getRandomNum(min, max) {
@@ -112,6 +117,7 @@ function getSlidePrev() {
 
 document.querySelector('.previousSlide').addEventListener('click', getSlidePrev);
 
+//4. Weather ==================================================//
 async function getWeather() {
     const weatherIcon = document.querySelector('.icon');
     const temperature = document.querySelector('.temperature');
@@ -140,6 +146,7 @@ addEventListener('load', getWeather)
 
 document.querySelector('.city').addEventListener('change', getWeather);
 
+//5. Quote ==================================================//
 let randomQuoteNum;
 
 function randomQuote(min, max) {
@@ -167,10 +174,20 @@ function changeQuote() {
 
 document.querySelector('.change_quote').addEventListener('click', changeQuote);
 
+//6,7. Audio-player ==================================================//
 const audio = new Audio();
 let isPlay = false;
 let playNum = 0;
-
+const button = document.querySelector('.player-icon');
+const buttonNext = document.querySelector('.player-next');
+const buttonPrev = document.querySelector('.player-previous');
+const playerNext = document.querySelector('.player-next');
+const playerPrev = document.querySelector('.player-previous');
+const playListContainer = document.querySelector('.play-list');
+const player = document.querySelector('.player');
+const timeline = player.querySelector('.timeline');
+const volumeSlider = player.querySelector('.volume-slider');
+let currentVolumePercantage = '';
 
 function playAudio() {
     if(!isPlay) {
@@ -190,9 +207,18 @@ function playAudio() {
     }
 }
 
-const button = document.querySelector('.player-icon');
-const buttonNext = document.querySelector('.player-next');
-const buttonPrev = document.querySelector('.player-previous')
+/* function playSong() {
+    window.addEventListener('click', function testFunc = e => {
+        console.log(e.target.innerText);
+    })
+} */
+
+/* songsList.addEventListener('click', playSong) */
+
+/* window.onclick = e => {
+    console.log(e.target.innerText);
+} */
+
 button.addEventListener('click', playAudio); 
 audio.addEventListener('ended', playNext)
 
@@ -201,8 +227,6 @@ function togglePause() {
         button.classList.add('pause');
     } else {
         button.classList.remove('pause');
-        /* player.querySelector('.timeBar .length').textContent = '0:00';
-        player.querySelector('.timeBar .current').textContent = '0:00' */
     }
 }
 
@@ -229,7 +253,6 @@ function playNext() {
     playAudio();
 }
 
-const playerNext = document.querySelector('.player-next');
 playerNext.addEventListener('click', playNext)
 
 function playPrev() {
@@ -245,11 +268,8 @@ function playPrev() {
     playAudio();
 }
 
-const playerPrev = document.querySelector('.player-previous');
 playerPrev.addEventListener('click', playPrev);
 
-
-const playListContainer = document.querySelector('.play-list');
 playList.forEach(el => {
     const li = document.createElement('li');
     li.classList.add('play-item');
@@ -257,8 +277,6 @@ playList.forEach(el => {
     playListContainer.append(li);
 })
 
-const player = document.querySelector('.player');
-const timeline = player.querySelector('.timeline');
 timeline.addEventListener('click', e => {
     const timelineWidth = window.getComputedStyle(timeline).width;
     const timeToSeek = e.offsetX / parseInt(timelineWidth) * audio.duration;
@@ -290,7 +308,7 @@ audio.addEventListener('loadeddata', () => {
         audio.volume = .75;
 }, false)
 
-const volumeSlider = player.querySelector('.volume-slider');
+
 volumeSlider.addEventListener('click', e => {
     const sliderWidth = window.getComputedStyle(volumeSlider).width;
     const newVolume = e.offsetX / parseInt(sliderWidth);
@@ -298,7 +316,6 @@ volumeSlider.addEventListener('click', e => {
     player.querySelector('.volume-percantage').style.width = newVolume * 100 + '%';
 }, false);
 
-let currentVolumePercantage = '';
 player.querySelector('.volume-button').addEventListener('click', () => {
     const volumeEl = player.querySelector('.volume-button');
     audio.muted = !audio.muted;
@@ -311,3 +328,5 @@ player.querySelector('.volume-button').addEventListener('click', () => {
         player.querySelector('.volume-percantage').style.width = `${currentVolumePercantage}`;
     }
 })
+
+//8. Translation ==================================================//
