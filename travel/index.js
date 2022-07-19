@@ -73,4 +73,112 @@ function changeToLoginMenu() {
     document.getElementById('login-menu').style.height = '660px';
 }
 
+//=========================Slider===================================================================
+
 /* console.log('1. Верстка соответствует макету. Ширина экрана 390px +48\n2. Ни на одном из разрешений до 320px включительно не появляется горизонтальная полоса прокрутки. Весь контент страницы при этом сохраняется не обрезается и не удаляется +0\n3. На ширине экрана 390px и меньше реализовано адаптивное меню +22\nОценка: 70 баллов') //вывести в консоль самооценку своей работы */
+const arrowRight = document.querySelector('.arrow-right');
+const arrowLeft = document.querySelector('.arrow-left');
+const slider = document.querySelector('.destinations-figures');
+const slides = document.querySelectorAll('.slides');
+const dots = document.querySelectorAll('.dots__single-dot');
+let currentSlide = slides[1];
+let currentDot = dots[1];
+const leftImage = slides[0];
+const centralImage = slides[1];
+const rightImage = slides[2];
+
+
+window.addEventListener('load', () => {
+    slider.style.left = 0;
+})
+
+function slideOnLeftDot() {
+    let currentPosition = slider.style.left;
+    dots[0].classList.add('dots__single-dot--active');
+    if (currentDot === dots[1]) {
+        dots[1].classList.remove('dots__single-dot--active');
+        slider.style.left = parseInt(`${currentPosition}`) + 860 + 'px';
+    } else if (currentDot === dots[2]) {
+        dots[2].classList.remove('dots__single-dot--active');
+        slider.style.left = parseInt(`${currentPosition}`) + 1720 + 'px';
+    };
+    currentSlide = slides[0];
+    currentDot = dots[0];
+}
+
+function slideOnCentralDot() {
+    let currentPosition = slider.style.left;
+    dots[1].classList.add('dots__single-dot--active');
+    if (currentDot === dots[0]) {
+        dots[0].classList.remove('dots__single-dot--active');
+        slider.style.left = parseInt(`${currentPosition}`) - 860 + 'px';
+    } else if (currentDot === dots[2]) {
+        dots[2].classList.remove('dots__single-dot--active');
+        slider.style.left = parseInt(`${currentPosition}`) + 860 + 'px';
+    }
+    currentSlide = slides[1];
+    currentDot = dots[1];
+}
+
+function slideOnRightDot() {
+    let currentPosition = slider.style.left;
+    dots[2].classList.add('dots__single-dot--active');
+    if (currentDot === dots[0]) {
+        dots[0].classList.remove('dots__single-dot--active');
+        slider.style.left = parseInt(`${currentPosition}`) - 1720 + 'px';
+    } else if (currentDot === dots[1]) {
+        dots[1].classList.remove('dots__single-dot--active');
+        slider.style.left = parseInt(`${currentPosition}`) - 860 + 'px';
+    }
+    currentSlide = slides[2];
+    currentDot = dots[2];
+}
+
+function slideRight() {
+    if (currentSlide === slides[0]) {
+        dots[0].classList.remove('dots__single-dot--active');
+        dots[1].classList.add('dots__single-dot--active');
+        slides[0].classList.remove('slides--active');
+        slides[1].classList.add('slides--active');
+        currentSlide = slides[1];
+        currentDot = dots[1];
+        arrowLeft.classList.remove('arrow-left--disabled')
+    } else if (currentSlide === slides[1]) {
+        dots[1].classList.remove('dots__single-dot--active');
+        dots[2].classList.add('dots__single-dot--active');
+        slides[1].classList.remove('slides--active');
+        slides[2].classList.add('slides--active');
+        currentSlide = slides[2];
+        currentDot = dots[2];
+        arrowRight.classList.add('arrow-right--disabled');
+    }
+}
+
+function slideLeft() {
+    if (currentSlide === slides[1]) {
+        dots[0].classList.add('dots__single-dot--active');
+        dots[1].classList.remove('dots__single-dot--active');
+        slides[0].classList.add('slides--active');
+        slides[1].classList.remove('slides--active');
+        currentSlide = slides[0];
+        currentDot = dots[0];
+        arrowLeft.classList.add('arrow-left--disabled');
+    } else if (currentSlide === slides[2]) {
+        dots[1].classList.add('dots__single-dot--active');
+        dots[2].classList.remove('dots__single-dot--active');
+        slides[1].classList.add('slides--active');
+        slides[2].classList.remove('slides--active');
+        currentSlide = slides[1];
+        currentDot = dots[1];
+        arrowRight.classList.remove('arrow-right--disabled')
+    }
+}
+
+arrowRight.addEventListener('click', slideRight)
+arrowLeft.addEventListener('click', slideLeft)
+dots[0].addEventListener('click', slideOnLeftDot)
+leftImage.addEventListener('click', slideOnLeftDot)
+dots[1].addEventListener('click', slideOnCentralDot)
+centralImage.addEventListener('click', slideOnCentralDot)
+dots[2].addEventListener('click', slideOnRightDot)
+rightImage.addEventListener('click', slideOnRightDot)

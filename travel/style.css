@@ -281,6 +281,7 @@ nav a {
     border: none;
     border-radius: 10px;
     box-shadow: 0px 0px 3px rgba(13, 96, 111, 0.08), 0px 2px 3px rgba(13, 96, 111, 0.16);
+    cursor: pointer;
 }
 
 .sign-in-btn:active {
@@ -404,9 +405,10 @@ nav a {
     margin: 0;
 }
 
-.register span {
+.register__text {
     color:#0D606F;
     text-decoration: underline;
+    cursor: pointer;
 }
 
 #register2 {
@@ -779,6 +781,9 @@ input::placeholder {
 .destinations-figures {
     display: flex;
     justify-content: center;
+    position: relative;
+    left: 0;
+    transition: 0.5s;
 }
 
 .destinations-figures figure {
@@ -792,17 +797,18 @@ input::placeholder {
 }
 
 @media (max-width: 391px) {
-    .destinations-image-one {
-        margin-right: 0;
+    .slides {
+        display: none;
+        transition: 0.5s;
     }   
 
-    .destinations-image-two {
-        display: none;
+    .slides--active {
+        display: initial;
     }
+}
 
-    .destinations-image-three {
-        display: none;
-    }
+.slides {
+    cursor: pointer;
 }
 
 .destination-caption {
@@ -819,13 +825,13 @@ input::placeholder {
         bottom: 200px
     }
 
-    .one {
+    /* .one {
         display: flex;
         width: 60px;
-   /*      width: 15.38vw; */
+        width: 15.38vw;
         margin-right: 0;
         margin-top: -5px;
-    }
+    } */
 }
 
 @media (min-width: 391px) {
@@ -842,6 +848,7 @@ input::placeholder {
     .destination-mobile {
         display: flex;
         width: 92.30vw;
+        border-radius: 15px;
     }
 }
 
@@ -854,6 +861,8 @@ input::placeholder {
     .indicator {
         width: 36px;
         margin-top: 7px;
+        position: relative;
+        z-index: 5;
     }
 }
 
@@ -870,6 +879,14 @@ input::placeholder {
     .arrow-container {
         display: none;
     }
+}
+
+.arrow-left--disabled {
+    opacity: 0.5;
+}
+
+.arrow-right--disabled {
+    opacity: 0.5;
 }
 
 .indicator ul {
@@ -891,22 +908,24 @@ input::placeholder {
     }
 }
 
-.filled {
+.dots__single-dot {
     width: 20px;
     height: 20px;
     background-color: #F2785C;
     border-radius: 50px;
+    opacity: 0.5;
+}
+
+.dots__single-dot--active {
+    opacity: 1;
+    transition: 0.5s;
 }
 
 @media (max-width: 391px) {
-    .filled {
+    .dots__single-dot {
         width: 8px;
         height: 8px;
     }
-}
-
-.not-filled {
-    opacity: 50%;
 }
 
 .destinationsbtn {
@@ -1149,7 +1168,7 @@ footer {
 }
 
 .footer-text {
-    width: 82%;
+    width: 75%;
     color: white;
     padding-left: 590px;
 }
@@ -1161,13 +1180,15 @@ footer {
 }
 
 .social-media {
-    width: 18%;
+    width: 25%;
 }
 
 @media(max-width: 391px) {
     .social-media {
-        width: 141px;
-        height: 34px;
+        /* width: 141px; */
+        width: 100%;
+        /* height: 34px; */
+        height: 70%;
     }
 }
 
@@ -1175,14 +1196,20 @@ footer {
     display: flex;
     gap: 20px;
     padding-left: 0;
+    align-items: center;
 }
 
 @media (max-width: 391px) {
     .social-media ul {
         margin: 0;
+        justify-content: center;
     }
 }
 
 .social-media li {
     list-style: none;
+}
+
+.image_rs-school {
+    width: 88px;
 }

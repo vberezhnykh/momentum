@@ -10,7 +10,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Aleo:ital,wght@0,400;0,700;1,400;1,700&family=Red+Hat+Text:wght@500&display=swap" rel="stylesheet">
     <link rel="icon" href="assets/svg/favicon.svg">
-    <script src="index.js"></script>
 </head>
 <body>
     <div class="body-overlay" id="body-overlay" onclick="closeNav(), closePopUpMenu(), closeMobilePopUpMenu()"></div>
@@ -58,8 +57,8 @@
             <button id="general" class="sign-in-btn general" onclick="showAlert()">Sign In</button>
             <p id="forgot-password" class="forgot-password"><a href="">Forgot Your Password?</a></p>
             <div class="line bottom"></div>
-            <p id="register1" class="register">Don't have an account? <span onclick="changeMenu()">Register</span></p>
-            <p id="register2" class="register">Already have an account? <span onclick="changeToLoginMenu()">Log in</span></p>
+            <p id="register1" class="register">Don't have an account? <span class="register__text" onclick="changeMenu()">Register</span></p>
+            <p id="register2" class="register">Already have an account? <span class ="register__text" onclick="changeToLoginMenu()">Log in</span></p>
         </div>
     </header>
     <div class="header-background"></div>
@@ -113,22 +112,24 @@
             <div class="destinations-block">
                 <h2>POPULAR DESTINATIONS</h2>
                 <div class="destinations-figures">
-                    <figure class="destinations-image-one">
+                    <figure class="slides">
                         <div >
                             <img class="destination-desktop" src="assets/img/spain.jpg" alt="Spain">
                             <img class="destination-mobile" src="assets/img/spain-mobile.jpg" alt="">
                         </div>
                         <figcaption class="destination-caption one">SPAIN</figcaption>
                     </figure>
-                    <figure class="destinations-image-two">
+                    <figure class="slides slides--active">
                         <div>
-                            <img src="assets/img/japan.jpg" alt="Japan">
+                            <img class="destination-desktop"src="assets/img/japan.jpg" alt="Japan">
+                            <img class="destination-mobile" src="assets/img/japan-mobile.png" alt="">
                         </div>
                         <figcaption class="destination-caption two">JAPAN</figcaption>
                     </figure>
-                    <figure class="destinations-image-three">
+                    <figure class="slides">
                         <div>
-                            <img src="assets/img/USA.jpg" alt="USA">
+                            <img class="destination-desktop" src="assets/img/USA.jpg" alt="USA">
+                            <img class="destination-mobile" src="assets/img/usa-mobile.png" alt="">
                         </div>
                         <figcaption class="destination-caption three">USA</figcaption>
                     </figure>
@@ -138,10 +139,10 @@
                     <div class="arrow-right"><img src="assets/svg/arrow-right.svg" alt=""></div>
                 </div>
                 <div class="indicator">
-                    <ul>
-                        <li><div class="filled"></div></li>
-                        <li><div class="filled not-filled"></div></li>
-                        <li><div class="filled not-filled"></div></li>
+                    <ul class="dots">
+                        <li><div class="dots__single-dot"></div></li>
+                        <li><div class="dots__single-dot dots__single-dot--active"></div></li>
+                        <li><div class="dots__single-dot"></div></li>
                     </ul>
                 </div>
                 <button class="btn-wrapper button destinationsbtn"><img class="arrow-desktop" src="assets/svg/bi_arrow-right.svg" alt="arrow-right">
@@ -202,11 +203,14 @@
         <div class="footer-text">All Rights Reserved © Travel Portal</div>
         <div class="social-media" id="social-media">
             <ul>
-                <li><a href=""><img src="assets/svg/instagram.svg" alt=""></a></li>
-                <li><a href=""><img src="assets/svg/youtube.svg" alt=""></a></li>
-                <li><a href=""><img src="assets/svg/twitter.svg" alt=""></a></li>
+                <li><a href="https://rs.school/js-stage0/" target="_blank"><img class="image_rs-school" src="assets/svg/rs_school_js.svg" alt=""></a></li>
+                <li><a href="https://www.instagram.com/" target="_blank"><img src="assets/svg/instagram.svg" alt=""></a></li>
+                <li><a href="https://www.youtube.com/" target="_blank"><img src="assets/svg/youtube.svg" alt=""></a></li>
+                <li><a href="https://twitter.com/" target="_blank"><img src="assets/svg/twitter.svg" alt=""></a></li>
+                <li><a href="https://github.com/vberezhnykh" target="_blank"><img src="assets/img/github.png" alt=""></a></li>
             </ul>
         </div>
     </footer>
+    <script src="index.js"></script>
 </body>
 </html>
