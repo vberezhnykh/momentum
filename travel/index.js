@@ -75,14 +75,15 @@ function changeToLoginMenu() {
 
 //=========================Slider===================================================================
 
-/* console.log('1. Верстка соответствует макету. Ширина экрана 390px +48\n2. Ни на одном из разрешений до 320px включительно не появляется горизонтальная полоса прокрутки. Весь контент страницы при этом сохраняется не обрезается и не удаляется +0\n3. На ширине экрана 390px и меньше реализовано адаптивное меню +22\nОценка: 70 баллов') //вывести в консоль самооценку своей работы */
 const arrowRight = document.querySelector('.arrow-right');
 const arrowLeft = document.querySelector('.arrow-left');
 const slider = document.querySelector('.destinations-figures');
 const slides = document.querySelectorAll('.slides');
 const dots = document.querySelectorAll('.dots__single-dot');
-let currentSlide = slides[1];
-let currentDot = dots[1];
+let currentDesktopSlide = slides[1];
+let currentDesktopDot = dots[1];
+let currentMobileSlide = slides[1];
+let currentMobileDot = dots[1]
 const leftImage = slides[0];
 const centralImage = slides[1];
 const rightImage = slides[2];
@@ -95,90 +96,125 @@ window.addEventListener('load', () => {
 function slideOnLeftDot() {
     let currentPosition = slider.style.left;
     dots[0].classList.add('dots__single-dot--active');
-    if (currentDot === dots[1]) {
+    if (currentDesktopDot === dots[1]) {
         dots[1].classList.remove('dots__single-dot--active');
         slider.style.left = parseInt(`${currentPosition}`) + 860 + 'px';
-    } else if (currentDot === dots[2]) {
+    } else if (currentDesktopDot === dots[2]) {
         dots[2].classList.remove('dots__single-dot--active');
         slider.style.left = parseInt(`${currentPosition}`) + 1720 + 'px';
     };
-    currentSlide = slides[0];
-    currentDot = dots[0];
+    currentDesktopSlide = slides[0];
+    currentDesktopDot = dots[0];
 }
 
 function slideOnCentralDot() {
     let currentPosition = slider.style.left;
     dots[1].classList.add('dots__single-dot--active');
-    if (currentDot === dots[0]) {
+    if (currentDesktopDot === dots[0]) {
         dots[0].classList.remove('dots__single-dot--active');
         slider.style.left = parseInt(`${currentPosition}`) - 860 + 'px';
-    } else if (currentDot === dots[2]) {
+    } else if (currentDesktopDot === dots[2]) {
         dots[2].classList.remove('dots__single-dot--active');
         slider.style.left = parseInt(`${currentPosition}`) + 860 + 'px';
     }
-    currentSlide = slides[1];
-    currentDot = dots[1];
+    currentDesktopSlide = slides[1];
+    currentDesktopDot = dots[1];
 }
 
 function slideOnRightDot() {
     let currentPosition = slider.style.left;
     dots[2].classList.add('dots__single-dot--active');
-    if (currentDot === dots[0]) {
+    if (currentDesktopDot === dots[0]) {
         dots[0].classList.remove('dots__single-dot--active');
         slider.style.left = parseInt(`${currentPosition}`) - 1720 + 'px';
-    } else if (currentDot === dots[1]) {
+    } else if (currentDesktopDot === dots[1]) {
         dots[1].classList.remove('dots__single-dot--active');
         slider.style.left = parseInt(`${currentPosition}`) - 860 + 'px';
     }
-    currentSlide = slides[2];
-    currentDot = dots[2];
+    currentDesktopSlide = slides[2];
+    currentDesktopDot = dots[2];
 }
 
 function slideRight() {
-    if (currentSlide === slides[0]) {
+    if (currentMobileSlide === slides[0]) {
         dots[0].classList.remove('dots__single-dot--active');
         dots[1].classList.add('dots__single-dot--active');
         slides[0].classList.remove('slides--active');
         slides[1].classList.add('slides--active');
-        currentSlide = slides[1];
-        currentDot = dots[1];
+        currentMobileSlide = slides[1];
+        currentMobileDot = dots[1];
         arrowLeft.classList.remove('arrow-left--disabled')
-    } else if (currentSlide === slides[1]) {
+    } else if (currentMobileSlide === slides[1]) {
         dots[1].classList.remove('dots__single-dot--active');
         dots[2].classList.add('dots__single-dot--active');
         slides[1].classList.remove('slides--active');
         slides[2].classList.add('slides--active');
-        currentSlide = slides[2];
-        currentDot = dots[2];
+        currentMobileSlide = slides[2];
+        currentMobileDot = dots[2];
         arrowRight.classList.add('arrow-right--disabled');
     }
 }
 
 function slideLeft() {
-    if (currentSlide === slides[1]) {
+    if (currentMobileSlide === slides[1]) {
         dots[0].classList.add('dots__single-dot--active');
         dots[1].classList.remove('dots__single-dot--active');
         slides[0].classList.add('slides--active');
         slides[1].classList.remove('slides--active');
-        currentSlide = slides[0];
-        currentDot = dots[0];
+        currentMobileSlide = slides[0];
+        currentMobileDot = dots[0];
         arrowLeft.classList.add('arrow-left--disabled');
-    } else if (currentSlide === slides[2]) {
+    } else if (currentMobileSlide === slides[2]) {
         dots[1].classList.add('dots__single-dot--active');
         dots[2].classList.remove('dots__single-dot--active');
         slides[1].classList.add('slides--active');
         slides[2].classList.remove('slides--active');
-        currentSlide = slides[1];
-        currentDot = dots[1];
+        currentMobileSlide = slides[1];
+        currentMobileDot = dots[1];
         arrowRight.classList.remove('arrow-right--disabled')
     }
 }
 
 arrowRight.addEventListener('click', slideRight)
 arrowLeft.addEventListener('click', slideLeft)
-dots[0].addEventListener('click', slideOnLeftDot)
 leftImage.addEventListener('click', slideOnLeftDot)
-dots[1].addEventListener('click', slideOnCentralDot)
 centralImage.addEventListener('click', slideOnCentralDot)
-dots[2].addEventListener('click', slideOnRightDot)
 rightImage.addEventListener('click', slideOnRightDot)
+dots[0].addEventListener('click', slideOnLeftDot)
+dots[1].addEventListener('click', slideOnCentralDot)
+dots[2].addEventListener('click', slideOnRightDot)
+
+function isMobile() {
+    if (window.innerWidth < 391) {
+        dots[0].removeEventListener('click', slideOnLeftDot)
+        dots[1].removeEventListener('click', slideOnCentralDot)
+        dots[2].removeEventListener('click', slideOnRightDot)
+        if (currentMobileDot === dots[0]) {
+            slideRight();
+        } else if (currentMobileDot === dots[2]) {
+            slideLeft();
+        }
+        if (currentDesktopSlide === slides[0] || currentDesktopSlide === slides[2]) {
+            slideOnCentralDot();
+        }
+    } else {
+        dots[0].addEventListener('click', slideOnLeftDot)
+        dots[1].addEventListener('click', slideOnCentralDot)
+        dots[2].addEventListener('click', slideOnRightDot)
+        if (currentDesktopDot === dots[0] || currentDesktopDot === dots[2]) {
+            slideOnCentralDot();
+            dots[0].classList.remove('dots__single-dot--active');
+            dots[1].classList.add('dots__single-dot--active');
+            dots[2].classList.remove('dots__single-dot--active');
+        } 
+        if (currentMobileDot === dots[0] || currentMobileDot === dots[2]) {
+            dots[0].classList.remove('dots__single-dot--active');
+            dots[1].classList.add('dots__single-dot--active');
+            dots[2].classList.remove('dots__single-dot--active');
+        }
+    }
+} 
+
+window.addEventListener('resize', isMobile)
+
+console.log('1. Слайдер изображений в секции destinations +50\n2. Нажатие на кнопку Login (кнопка Account в мобильной версии) показывает сверстанный логин попап + 50\n3. Нажатие на кнопку Register на Login попапе меняет разметку попапа на разметку Sign Up попапа согласно макету (То есть нажатие не закрывает модал а просто меняет его наполнение). +25\nОценка: 125 баллов') //вывести в консоль самооценку своей работы

@@ -525,7 +525,7 @@ input::placeholder {
     /* width: 228px; */
     width: 25.56%;
     height: 59px;
-    font-size: 24px; /* добавить резиновый размер шрифта */
+    font-size: 23px; /* добавить резиновый размер шрифта */
     position: relative;
     bottom: 77px;
     /* left: 644px; */
@@ -798,12 +798,26 @@ input::placeholder {
 
 @media (max-width: 391px) {
     .slides {
-        display: none;
-        transition: 0.5s;
+         opacity: 0;
+         height: 0;
+         width: 0;
+       
     }   
 
     .slides--active {
         display: initial;
+        opacity: 1;
+        transition: all 0.5s linear;
+        height: initial;
+        width: initial
+    }
+
+    .slides--hidden {
+        display: none;
+    }
+
+    .slides--visuallyhidden {
+        opacity: 0;
     }
 }
 
