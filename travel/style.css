@@ -8,6 +8,7 @@ html, body {
 
 html {
     scroll-behavior: smooth;
+    height: 100%;
     /* max-width: 1440px; */
 }
 
@@ -252,7 +253,7 @@ nav a {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 16px;
     position: absolute;
-    left: 395px;
+    left: 27.43vw;
     top: -670px;
     z-index: 1;
     display: flex;
@@ -403,12 +404,22 @@ nav a {
     font-weight: bold;
     color: rgba(13, 96, 111, 0.5);
     margin: 0;
+    display: none;
+}
+
+.register--active {
+    display: initial;
 }
 
 .register__text {
     color:#0D606F;
     text-decoration: underline;
     cursor: pointer;
+    display: none;
+}
+
+.register__text--active {
+    display: initial;
 }
 
 #register2 {
@@ -440,14 +451,11 @@ nav a {
 }
 
 .preview-card {
-    /* width: 892px; */
     width: 61.94%;
     height: 422px;
     color: white;
     position: relative;
-    /* left: 120px; */
     left: 8.33%;
-    /* top: 32px; */
     top: 2vmax;
 }
 
