@@ -8,9 +8,14 @@ function closeNav() {
     document.getElementById("body-overlay").style.display = "none";
 }
 
+let registerText = document.querySelectorAll('.register__text');
+let register = document.querySelector('.register')
+
 function openPopUpMenu() {
     document.getElementById('login-menu').style.top = '100px';
     document.getElementById("body-overlay").style.display = 'unset';
+    registerText[0].classList.add('register__text--active');
+    register.classList.add('register--active');
 }
 
 function openMobilePopUpMenu() {
@@ -20,6 +25,9 @@ function openMobilePopUpMenu() {
     width: 100%;
     `
     document.getElementById("body-overlay").style.display = 'unset';
+    registerText[0].classList.add('register__text--active');
+    registerText[1].classList.add('register__text--active');
+    register.classList.add('register--active');
 }
 
 function closePopUpMenu() {
@@ -34,14 +42,17 @@ function closePopUpMenu() {
     document.getElementById('register1').style.display = 'initial';
     document.getElementById('register2').style.display = 'none';
     document.getElementById('login-menu').style.height = '660px';
+    registerText[0].classList.remove('register__text--active');
+    registerText[1].classList.remove('register__text--active');
 }
 
 function closeMobilePopUpMenu() {
     document.getElementById('login-menu').style.cssText = `
     top: -670px;
-    left: 395px;
+    left: 27.43vw;
     width: 45.28%;
-    `
+    `;
+    document.getElementById("body-overlay").style.display = "none";
 }
 
 function showAlert() {
@@ -59,6 +70,7 @@ function changeMenu() {
    document.getElementById('register1').style.display = 'none';
    document.getElementById('register2').style.display = 'unset';
    document.getElementById('login-menu').style.height = '436px';
+   registerText[1].classList.add('register__text--active');
 }
 
 function changeToLoginMenu() {
@@ -72,6 +84,15 @@ function changeToLoginMenu() {
     document.getElementById('register2').style.display = 'none';
     document.getElementById('login-menu').style.height = '660px';
 }
+
+let overlay = document.querySelector('.body-overlay');
+overlay.addEventListener('click', () => {
+    if (document.innerWidth < 391) {
+        closeMobilePopUpMenu();
+    } else {
+        closePopUpMenu();
+    }
+})
 
 //=========================Slider===================================================================
 
@@ -94,46 +115,46 @@ window.addEventListener('load', () => {
 })
 
 function slideOnLeftDot() {
-    let currentPosition = slider.style.left;
-    dots[0].classList.add('dots__single-dot--active');
-    if (currentDesktopDot === dots[1]) {
-        dots[1].classList.remove('dots__single-dot--active');
-        slider.style.left = parseInt(`${currentPosition}`) + 860 + 'px';
-    } else if (currentDesktopDot === dots[2]) {
-        dots[2].classList.remove('dots__single-dot--active');
-        slider.style.left = parseInt(`${currentPosition}`) + 1720 + 'px';
-    };
-    currentDesktopSlide = slides[0];
-    currentDesktopDot = dots[0];
-}
+        let currentPosition = slider.style.left;
+        dots[0].classList.add('dots__single-dot--active');
+        if (currentDesktopDot === dots[1]) {
+            dots[1].classList.remove('dots__single-dot--active');
+            slider.style.left = parseInt(`${currentPosition}`) + 860 + 'px';
+        } else if (currentDesktopDot === dots[2]) {
+            dots[2].classList.remove('dots__single-dot--active');
+            slider.style.left = parseInt(`${currentPosition}`) + 1720 + 'px';
+        };
+        currentDesktopSlide = slides[0];
+        currentDesktopDot = dots[0];
+    }
 
 function slideOnCentralDot() {
-    let currentPosition = slider.style.left;
-    dots[1].classList.add('dots__single-dot--active');
-    if (currentDesktopDot === dots[0]) {
+        let currentPosition = slider.style.left;
+        dots[1].classList.add('dots__single-dot--active');
+        if (currentDesktopDot === dots[0]) {
         dots[0].classList.remove('dots__single-dot--active');
         slider.style.left = parseInt(`${currentPosition}`) - 860 + 'px';
-    } else if (currentDesktopDot === dots[2]) {
+        } else if (currentDesktopDot === dots[2]) {
         dots[2].classList.remove('dots__single-dot--active');
         slider.style.left = parseInt(`${currentPosition}`) + 860 + 'px';
     }
     currentDesktopSlide = slides[1];
     currentDesktopDot = dots[1];
-}
+    }
 
 function slideOnRightDot() {
-    let currentPosition = slider.style.left;
-    dots[2].classList.add('dots__single-dot--active');
-    if (currentDesktopDot === dots[0]) {
-        dots[0].classList.remove('dots__single-dot--active');
-        slider.style.left = parseInt(`${currentPosition}`) - 1720 + 'px';
-    } else if (currentDesktopDot === dots[1]) {
-        dots[1].classList.remove('dots__single-dot--active');
-        slider.style.left = parseInt(`${currentPosition}`) - 860 + 'px';
+        let currentPosition = slider.style.left;
+        dots[2].classList.add('dots__single-dot--active');
+        if (currentDesktopDot === dots[0]) {
+            dots[0].classList.remove('dots__single-dot--active');
+            slider.style.left = parseInt(`${currentPosition}`) - 1720 + 'px';
+        } else if (currentDesktopDot === dots[1]) {
+            dots[1].classList.remove('dots__single-dot--active');
+            slider.style.left = parseInt(`${currentPosition}`) - 860 + 'px';
+        }
+        currentDesktopSlide = slides[2];
+        currentDesktopDot = dots[2];
     }
-    currentDesktopSlide = slides[2];
-    currentDesktopDot = dots[2];
-}
 
 function slideRight() {
     if (currentMobileSlide === slides[0]) {
@@ -184,37 +205,60 @@ dots[0].addEventListener('click', slideOnLeftDot)
 dots[1].addEventListener('click', slideOnCentralDot)
 dots[2].addEventListener('click', slideOnRightDot)
 
-function isMobile() {
-    if (window.innerWidth < 391) {
-        dots[0].removeEventListener('click', slideOnLeftDot)
-        dots[1].removeEventListener('click', slideOnCentralDot)
-        dots[2].removeEventListener('click', slideOnRightDot)
-        if (currentMobileDot === dots[0]) {
-            slideRight();
-        } else if (currentMobileDot === dots[2]) {
-            slideLeft();
-        }
-        if (currentDesktopSlide === slides[0] || currentDesktopSlide === slides[2]) {
-            slideOnCentralDot();
-        }
-    } else {
+function toggleEventListeners() {
+    if (window.innerWidth > 391) {
         dots[0].addEventListener('click', slideOnLeftDot)
         dots[1].addEventListener('click', slideOnCentralDot)
         dots[2].addEventListener('click', slideOnRightDot)
-        if (currentDesktopDot === dots[0] || currentDesktopDot === dots[2]) {
-            slideOnCentralDot();
-            dots[0].classList.remove('dots__single-dot--active');
-            dots[1].classList.add('dots__single-dot--active');
-            dots[2].classList.remove('dots__single-dot--active');
-        } 
-        if (currentMobileDot === dots[0] || currentMobileDot === dots[2]) {
-            dots[0].classList.remove('dots__single-dot--active');
-            dots[1].classList.add('dots__single-dot--active');
-            dots[2].classList.remove('dots__single-dot--active');
+        leftImage.addEventListener('click', slideOnLeftDot)
+        centralImage.addEventListener('click', slideOnCentralDot)
+        rightImage.addEventListener('click', slideOnRightDot)
+    } else {
+        dots[0].removeEventListener('click', slideOnLeftDot)
+        dots[1].removeEventListener('click', slideOnCentralDot)
+        dots[2].removeEventListener('click', slideOnRightDot)
+        leftImage.removeEventListener('click', slideOnLeftDot)
+        centralImage.removeEventListener('click', slideOnCentralDot)
+        rightImage.removeEventListener('click', slideOnRightDot)
+    }
+    setTimeout(toggleEventListeners, 500);
+}
+window.addEventListener('load', toggleEventListeners)
+
+let prevWidth = window.innerWidth;
+let prevHeight = window.innerHeight;
+function isMobile() {
+    if (window.innerWidth !== prevWidth) {
+        let mobileScreenWidth = window.matchMedia("(max-width: 391px)");
+        if (mobileScreenWidth.matches) {
+            if (currentDesktopSlide === slides[0] || currentDesktopSlide === slides[2]) {
+                slideOnCentralDot();
+            }
+            if (currentMobileDot === dots[0]) {
+                slideRight();
+            } else if (currentMobileDot === dots[2]) {
+                slideLeft();
+            }
+            closePopUpMenu();
+        } else {
+            if (currentDesktopDot === dots[0] || currentDesktopDot === dots[2]) {
+                slideOnCentralDot();
+                dots[0].classList.remove('dots__single-dot--active');
+                dots[1].classList.add('dots__single-dot--active');
+                dots[2].classList.remove('dots__single-dot--active');
+            } 
+            if (currentMobileDot === dots[0] || currentMobileDot === dots[2]) {
+                dots[0].classList.remove('dots__single-dot--active');
+                dots[1].classList.add('dots__single-dot--active');
+                dots[2].classList.remove('dots__single-dot--active');
+            }
+            closeMobilePopUpMenu();
         }
     }
-} 
+    prevWidth = window.innerWidth;
+}
 
 window.addEventListener('resize', isMobile)
 
 console.log('1. Слайдер изображений в секции destinations +50\n2. Нажатие на кнопку Login (кнопка Account в мобильной версии) показывает сверстанный логин попап + 50\n3. Нажатие на кнопку Register на Login попапе меняет разметку попапа на разметку Sign Up попапа согласно макету (То есть нажатие не закрывает модал а просто меняет его наполнение). +25\nОценка: 125 баллов') //вывести в консоль самооценку своей работы
+
