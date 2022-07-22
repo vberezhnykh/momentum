@@ -26,8 +26,8 @@ function showDate() {
 //2. Greeting ==================================================//
 
 const greetingTranslation = {
-    russian: 'Добрый день',
-    english: 'Good afternoon'
+    Ru: 'Добрый день',
+    En: 'Good afternoon'
 }
 
 function getTimeOfDay() {
@@ -56,14 +56,18 @@ function showGreeting() {
 function setLocalStorage() {
     const name = document.querySelector('.input');
     const city = document.querySelector('.city');
+    const backgroundImage = document.querySelector('.body');
     localStorage.setItem('city', city.value);
     localStorage.setItem('name', name.value);
+    localStorage.setItem('backgroundImage', backgroundImage.style.backgroundImage);
 }
 window.addEventListener('beforeunload', setLocalStorage);
+
 
 function getLocalStorage() {
     const name = document.querySelector('.input');
     const city = document.querySelector('.city');
+    const backgroundImage = document.querySelector('.body');
 
     if (localStorage.getItem('name')) {
         name.value = localStorage.getItem('name');
@@ -72,9 +76,58 @@ function getLocalStorage() {
     if (localStorage.getItem('city')) {
         city.value = localStorage.getItem('city');
     }
+    if (localStorage.getItem('backgroundImage')) {
+        backgroundImage.style.backgroundImage = localStorage.getItem('backgroundImage')
+    }
 }
 window.addEventListener('load', getLocalStorage)
 
+//9. API ======================================================//
+
+let unsplashLink;
+let unsplashSetOfPhotos = [];
+async function getLinkToImageUnsplash() {
+    const timeOfDayUpperCase = getTimeOfDay();
+    const timeOfDay = timeOfDayUpperCase.toLowerCase();
+    const url = `https://api.unsplash.com/photos/random?orientation=landscape&query=${timeOfDay}+nature&count=30&client_id=I3eBqT9_j8CoW8DuszAU_zsxllH3odilxkh7kNZ8ETE`;
+    const res = await fetch(url);
+    const data = await res.json();
+    unsplashSetOfPhotos = [...data];
+    /* console.log(unsplashSetOfPhotos[0].keys()) */
+}
+
+window.addEventListener('load', getLinkToImageUnsplash)
+
+let flickrLink;
+let newSetOfPhotos = [];
+
+async function getLinkToImageFlickr() {
+    const timeOfDayUpperCase = getTimeOfDay();
+    const timeOfDay = timeOfDayUpperCase.toLowerCase();
+    const url = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=1c6ab8ba7ed7bced1c3e2109248e2d6b&tags=nature%2C+${timeOfDay}&tag_mode=all&content_type=1&media=photos&extras=url_l&format=json&nojsoncallback=1`
+    const res = await fetch(url);
+    const data = await res.json();
+    
+    for (let i = 0; i < 30; i++) {
+        let width = data.photos.photo[i].width_l;
+        let height = data.photos.photo[i].height_l
+        if (determinePhotoOrientation(width, height) === 'landscape') {
+                newSetOfPhotos.push(data.photos.photo[i]);
+            };
+    }
+}
+
+window.addEventListener('load', getLinkToImageFlickr)
+
+function determinePhotoOrientation(width, height) {
+    if (width > height) {
+        return 'landscape';
+    } else if (width < height) {
+        return 'portrait';
+    } else {
+        return 'square';
+    }
+}
 
 //3. Image slider==================================================//
 let randomNum;
@@ -85,19 +138,29 @@ function getRandomNum(min, max) {
 
 window.addEventListener('load', getRandomNum(1,20));
 
+
 function setBg() {
-    const timeOfDayUpperCase = getTimeOfDay();
+    /* const timeOfDayUpperCase = getTimeOfDay();
     const timeOfDay = timeOfDayUpperCase.toLowerCase();
-    let bgNum = randomNum.toString().padStart(2, '0');
+    let bgNum = randomNum.toString().padStart(2, '0'); */
+    /* flickrLink = newSetOfPhotos[randomNum].url_l; */
+    unsplashLink = unsplashSetOfPhotos[randomNum].urls.regular;
     const img = new Image();
-    
-    img.src = `https://raw.githubusercontent.com/vberezhnykh/momentum-images/assets/images/${timeOfDay}/${bgNum}.jpg`;
+    /* img.src = `https://raw.githubusercontent.com/vberezhnykh/momentum-images/assets/images/${timeOfDay}/${bgNum}.jpg`; */
+    /* img.src = `${flickrLink}`; */
+    img.src=`${unsplashLink}`;
     img.onload = () => {
-       document.body.style.backgroundImage = `url(https://raw.githubusercontent.com/vberezhnykh/momentum-images/assets/images/${timeOfDay}/${bgNum}.jpg)`;
-    };
+        /* document.body.style.backgroundImage = `url(https://raw.githubusercontent.com/vberezhnykh/momentum-images/assets/images/${timeOfDay}/${bgNum}.jpg)`; */
+        /* document.body.style.backgroundImage = `url(${flickrLink})`; */
+        document.body.style.backgroundImage = `url(${unsplashLink})`;
+     };
+    getLinkToImageUnsplash();
 }
 
-window.addEventListener('load', setBg);
+window.addEventListener('load', () => {
+    setTimeout(setBg, 1000)
+})
+
 
 function getSlideNext() {
     if (randomNum < 20) {
@@ -156,7 +219,7 @@ function randomQuote(min, max) {
 window.addEventListener('load', randomQuote(0,9));
 
 async function getQuotes() {
-    const quotes = 'quote.json';
+    const quotes = 'quoteEn.json';
     const res = await fetch(quotes);
     const data = await res.json();
     
