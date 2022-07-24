@@ -93,7 +93,6 @@ async function getLinkToImageUnsplash() {
     const res = await fetch(url);
     const data = await res.json();
     unsplashSetOfPhotos = [...data];
-    /* console.log(unsplashSetOfPhotos[0].keys()) */
 }
 
 window.addEventListener('load', getLinkToImageUnsplash)
@@ -120,7 +119,7 @@ async function getLinkToImageFlickr() {
 window.addEventListener('load', getLinkToImageFlickr)
 
 function determinePhotoOrientation(width, height) {
-    if (width > height) {
+    if (width > height) { 
         return 'landscape';
     } else if (width < height) {
         return 'portrait';
@@ -393,3 +392,9 @@ player.querySelector('.volume-button').addEventListener('click', () => {
 })
 
 //8. Translation ==================================================//
+//10. Setting =====================================================//
+const state = {
+    language: ['en', 'ru'],
+    photoSourse: ['github', 'flickr', 'unsplash'],
+    blocks: ['time', 'date', 'greeting', 'quote', 'weather', 'audio']
+}

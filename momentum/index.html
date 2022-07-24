@@ -69,9 +69,39 @@
             </div>
         </main>
         <footer class="footer">
-            <button class="change_quote"></button>
-            <div class="quote"></div>
-            <div class="author"></div>
+            <div class="settings">
+                <button class="settings__button"></button>
+                <div class="settings__menu--hidden">
+                    <h2 class="settings__header">SETTINGS</h2>
+                    <div class="hide_block">
+                        <div class="hide_block__name">Hide</div>
+                        <div class="hide_block__player">Player</div>
+                        <div class="hide_block__weather">Weather</div>
+                        <div class="hide_block__time">Time</div>
+                        <div class="hide_block__date">Date</div>
+                        <div class="hide_block__greeting">Greeting</div>
+                        <div class="hide_block__quotes">Quotes</div>
+                        <div class="hide_block__todo-list--hidden">Todo List</div>
+                    </div>
+                    <div class="language">
+                        <div class="language__name">Language</div>
+                        <div class="language__english--active">English</div>
+                        <div class="language__russian">Russian</div>
+                    </div>
+                    <div class="photos">
+                        <div class="photos__name">Photos</div>
+                        <div class="photos__github">Github</div>
+                        <div class="photos__flickr">Flickr</div>
+                        <div class="photos__unsplash--active">Unsplash</div>
+                    </div>
+                </div>
+            </div>
+            <div class="quote-wrapper">
+                <button class="change_quote"></button>
+                <div class="quote"></div>
+                <div class="author"></div>
+            </div>
+            <div class="todo-list"></div>
         </footer>
     </div> 
     <script type="module" src="script.js"></script>

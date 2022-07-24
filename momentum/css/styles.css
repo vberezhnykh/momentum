@@ -28,7 +28,7 @@ body {
     height: 35vh;
     min-height: 200px;
     width: 97%; //при большей ширине появляется горизонтальный скролл. Выяснить почему;
-    padding: 20px 20px 0 20px;
+    padding: 10px 10px 0 10px;
 }
 
 .player {
@@ -348,6 +348,7 @@ body {
 .nextSlide:hover,
 .previousSlide:hover {
     opacity: 1;
+    transform: scale(1.3);
 }
 
 .nextSlide:active,
@@ -357,10 +358,194 @@ body {
 
 .footer {
     display: flex;
+    height: 20vh;
+    width: 97%;
+    padding: 0 10px 10px 10px;
+}
+
+.settings {
+    width: 30%;
+    display: flex;
+    align-items: flex-end;
+}
+
+.settings__button {
+    background-image: url('../assets/svg/settings.svg');
+    background-color: rgba(255,255,255,0.5);
+    background-size: cover;
+    width: 48px;
+    height: 40px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+}
+
+.settings__button:hover {
+    transform: rotate(90deg);
+    transition: 0.3s;
+    background-color: rgba(255, 255, 255, 1);
+}
+
+.settings__button:not(hover) {
+    transform: rotate(0deg);
+    transition: 0.3s;
+}
+
+.settings__menu {
+    position: absolute;
+    bottom: 10px;
+    width: 25%;
+    height: 40%;
+    background-color: white;
+    opacity: 0.8;
+    border-radius: 10px;
+    visibility: visible;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 0 1% 0 1%;
+    line-height: 150%;
+    transition: 0.3s;
+}
+
+.settings__menu--hidden {
+    visibility: hidden;
+}
+
+.settings__header {
+    margin: 0;
+}
+
+.hide_block {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 10px;
+}
+
+.hide_block > div {
+    width: 20%;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.hide_block > div:hover {
+    transform: scale(1.1);
+}
+
+.hide_block__player--hidden,
+.hide_block__weather--hidden,
+.hide_block__time--hidden,
+.hide_block__date--hidden,
+.hide_block__greeting--hidden,
+.hide_block__quotes--hidden,
+.hide_block__todo-list--hidden {
+    width: 20%;
+    background-color: #FF6666;
+    transition: 0.3s;
+}
+
+.hide_block__name {
+    width: 30% !important;
+    border: none !important;
+    margin-right: 0 !important;
+    cursor: unset !important;
+    text-align: left;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.hide_block__name:hover {
+    transform: unset !important;
+}
+
+.language {
+    display: flex;
+    gap: 10px;
+}
+
+.language > div {
+    border: 1px solid black;
+    cursor: pointer;
+    border-radius: 5px
+}
+
+.language > div:hover {
+    transform: scale(1.1);
+}
+
+.language__name {
+    width: 30% !important;
+    border: none !important;
+    gap: 0 !important;
+    text-align: left;
+    cursor: unset !important;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.language__name:hover {
+    transform: unset !important;
+}
+
+.language__english,
+.language__russian {
+    width: 35%;
+}
+
+.language__english--active,
+.language__russian--active {
+    width: 35%;
+    background-color: lightgreen;
+    transition: 0.3s;
+}
+
+.photos {
+    display: flex;
+    gap: 10px;
+}
+
+.photos > div {
+    border: 1px solid black;
+    width: 20%;
+    cursor: pointer;
+    border-radius: 5px
+}
+
+.photos > div:hover {
+    transform: scale(1.1);
+}
+
+.photos__github--active,
+.photos__flickr--active,
+.photos__unsplash--active {
+    width: 20%;
+    background-color: lightgreen;
+    transition: 0.3s;
+}
+
+.photos__name {
+    width: 30% !important;
+    border: none !important;
+    cursor: unset !important;
+    text-align: left;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.photos__name:hover {
+    transform: unset !important;
+}
+
+.quote-wrapper {
+    display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
-    height: 20vh;
+    width: 40%;
+    visibility: visible;
 }
 
 .change_quote {
@@ -375,18 +560,29 @@ body {
 
 .change_quote:hover {
     background-color: rgba(255, 255, 255, 1);
+    transform: rotate(180deg);
+    transition: 0.3s;
+}
+
+.change_quote:not(hover) {
+    transform: rotate(0deg);
+    transition: 0.3s;
 }
 
 .change_quote:active {
-    transform: scale(1.1);
+    /* transform: rotate(0deg); */
 }
 
 .quote {
-    width: 70%;
     font-size: 20px;
+    transition: 0.3s;
 }
 
 .author {
-    width: 30%;
     font-size: 20px;
+    transition: 0.3s;
 } 
+
+.todo-list {
+    width: 30%;
+}
