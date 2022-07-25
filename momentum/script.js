@@ -74,13 +74,13 @@ function showGreeting() {
         input.placeholder = '[Enter name]';
     } else if (currentLanguage === 'russian') {
         if (timeOfDay === 'ночь') {
-            greetingText = 'Доброй ночи';
+            greetingText = 'Доброй ночи,';
         } else if (timeOfDay === 'утро') {
-            greetingText = 'Доброе утро';
+            greetingText = 'Доброе утро,';
         } else if (timeOfDay === 'день') {
-            greetingText = 'Добрый день';
+            greetingText = 'Добрый день,';
         } else if (timeOfDay === 'вечер') {
-            greetingText = 'Добрый вечер';
+            greetingText = 'Добрый вечер,';
         } input.placeholder = '[Введите имя]';
     }
     document.querySelector('.greeting').textContent = greetingText;
@@ -286,23 +286,33 @@ async function getWeather() {
     const res = await fetch (url);
     const data = await res.json();
     
-    weatherIcon.className = 'icon owf'; //придумать как выводить ошибку, если город не введен
-   /* if (city === '') {
-        weatherIcon.textContent = 'Error';
-        temperature.textContent = 'Error'
-    } else { */
+    if (data.cod === 200) {
+        weatherIcon.className = 'icon owf';
         weatherIcon.classList.add(`owf-${data.weather[0].id}`)
         temperature.textContent = `${Math.round(data.main.temp)}°C`;
         weatherDescription.textContent = data.weather[0].description;
         if (currentLanguage === 'english') {
-            wind.textContent = `Wind speed: ${data.wind.speed} m/s`
-            humidity.textContent = `Humidity: ${data.main.humidity} %`;
+            wind.textContent = `Wind speed: ${Math.floor(data.wind.speed)} m/s`
+            humidity.textContent = `Humidity: ${Math.floor(data.main.humidity)} %`;
         } else if (currentLanguage === 'russian') {
-            wind.textContent = `Скорость ветра: ${data.wind.speed} м/с`;
-            humidity.textContent = `Влажность: ${data.main.humidity} %`;
+            wind.textContent = `Скорость ветра: ${Math.floor(data.wind.speed)} м/с`;
+            humidity.textContent = `Влажность: ${Math.floor(data.main.humidity)} %`;
         }
-        
-    /* }  */
+    } else if (data.cod === '404' || city.value === '') {
+        if (currentLanguage === 'english') {
+            temperature.textContent = `${data.message}`;
+            weatherIcon.className = 'icon owf';
+            weatherDescription.textContent = '';
+            wind.textContent = '';
+            humidity.textContent = ''
+        } else if (currentLanguage === 'russian' || city.value === '') {
+            temperature.textContent = 'Неверно указан город'
+            weatherIcon.className = 'icon owf';
+            weatherDescription.textContent = '';
+            wind.textContent = '';
+            humidity.textContent = ''
+        }
+    }    
 }
 
 addEventListener('load', getWeather)
