@@ -3,8 +3,13 @@ import playList from "./playList.js";
 //1. Time and Date ==================================================//
 function showTime() {
     const date = new Date();
-    const currentTime = date.toLocaleTimeString('ru-Ru');
-    document.querySelector('.time').textContent = currentTime;
+    if (currentLanguage === 'english') {
+        const currentTime = date.toLocaleTimeString('en-En');
+        document.querySelector('.time').textContent = currentTime;
+    } else if (currentLanguage === 'russian') {
+        const currentTime = date.toLocaleTimeString('ru-Ru');
+        document.querySelector('.time').textContent = currentTime;
+    }
     setTimeout(showTime, 1000);
     showDate();
     showGreeting();
@@ -13,43 +18,71 @@ function showTime() {
 window.addEventListener('load', showTime)
 
 function showDate() {
-    const date = new Date()
+    const date = new Date();
     const options = {
         month: 'long',
         day: 'numeric',
         weekday: 'long',
     }
-    const currentDate = date.toLocaleDateString('en-En', options);
-    document.querySelector('.date').textContent = currentDate;
+    if (currentLanguage === 'english') {
+        const currentDate = date.toLocaleDateString('en-En', options);
+        document.querySelector('.date').textContent = currentDate;
+    } else if (currentLanguage === 'russian') {
+        const currentDate = date.toLocaleDateString('ru-Ru', options);
+        document.querySelector('.date').textContent = currentDate;
+    }
 }
 
 //2. Greeting ==================================================//
-
-const greetingTranslation = {
-    Ru: 'Добрый день',
-    En: 'Good afternoon'
-}
-
 function getTimeOfDay() {
     const date = new Date();
     const hours = date.getHours();
     let timeOfDay = '';
     
-    if (hours >= 0 && hours < 6) {
-        timeOfDay = 'Night';
-    } else if (hours >= 6 && hours < 12) {
-        timeOfDay = 'Morning';
-    } else if (hours >= 12 && hours < 18) {
-        timeOfDay = 'Afternoon';
-    } else {
-        timeOfDay = 'Evening';
+    if (currentLanguage === 'english') {
+        if (hours >= 0 && hours < 6) {
+            timeOfDay = 'Night';
+        } else if (hours >= 6 && hours < 12) {
+            timeOfDay = 'Morning';
+        } else if (hours >= 12 && hours < 18) {
+            timeOfDay = 'Afternoon';
+        } else {
+            timeOfDay = 'Evening';
+        }
+        return timeOfDay;
+    } else if (currentLanguage === 'russian') {
+        if (hours >= 0 && hours < 6) {
+            timeOfDay = 'ночь';
+        } else if (hours >= 6 && hours < 12) {
+            timeOfDay = 'утро';
+        } else if (hours >= 12 && hours < 18) {
+            timeOfDay = 'день';
+        } else {
+            timeOfDay = 'вечер';
+        }
+        return timeOfDay;
     }
-    return timeOfDay;
+    
 }
 
 function showGreeting() {
     const timeOfDay = getTimeOfDay();
-    const greetingText = `Good ${timeOfDay}, `;
+    let greetingText = '';
+    const input = document.querySelector('.input');
+    if(currentLanguage === 'english') {
+        greetingText = `Good ${timeOfDay}, `;
+        input.placeholder = '[Enter name]';
+    } else if (currentLanguage === 'russian') {
+        if (timeOfDay === 'ночь') {
+            greetingText = 'Доброй ночи';
+        } else if (timeOfDay === 'утро') {
+            greetingText = 'Доброе утро';
+        } else if (timeOfDay === 'день') {
+            greetingText = 'Добрый день';
+        } else if (timeOfDay === 'вечер') {
+            greetingText = 'Добрый вечер';
+        } input.placeholder = '[Введите имя]';
+    }
     document.querySelector('.greeting').textContent = greetingText;
 }
 
@@ -57,9 +90,11 @@ function setLocalStorage() {
     const name = document.querySelector('.input');
     const city = document.querySelector('.city');
     const backgroundImage = document.querySelector('.body');
+    const hideBlock = document.querySelector('.hide_block');
     localStorage.setItem('city', city.value);
     localStorage.setItem('name', name.value);
     localStorage.setItem('backgroundImage', backgroundImage.style.backgroundImage);
+    
 }
 window.addEventListener('beforeunload', setLocalStorage);
 
@@ -79,6 +114,7 @@ function getLocalStorage() {
     if (localStorage.getItem('backgroundImage')) {
         backgroundImage.style.backgroundImage = localStorage.getItem('backgroundImage')
     }
+    
 }
 window.addEventListener('load', getLocalStorage)
 
@@ -130,36 +166,89 @@ function determinePhotoOrientation(width, height) {
 
 //3. Image slider==================================================//
 let randomNum;
-
 function getRandomNum(min, max) {
     randomNum = (Math.floor(Math.random() * (max - min + 1)) + 1);
 }
-
 window.addEventListener('load', getRandomNum(1,20));
 
+let isGithub = true;
+let isFlickr = false;
+let isUnsplash = false;
 
 function setBg() {
-    /* const timeOfDayUpperCase = getTimeOfDay();
-    const timeOfDay = timeOfDayUpperCase.toLowerCase();
-    let bgNum = randomNum.toString().padStart(2, '0'); */
-    /* flickrLink = newSetOfPhotos[randomNum].url_l; */
-    unsplashLink = unsplashSetOfPhotos[randomNum].urls.regular;
     const img = new Image();
-    /* img.src = `https://raw.githubusercontent.com/vberezhnykh/momentum-images/assets/images/${timeOfDay}/${bgNum}.jpg`; */
-    /* img.src = `${flickrLink}`; */
-    img.src=`${unsplashLink}`;
-    img.onload = () => {
-        /* document.body.style.backgroundImage = `url(https://raw.githubusercontent.com/vberezhnykh/momentum-images/assets/images/${timeOfDay}/${bgNum}.jpg)`; */
-        /* document.body.style.backgroundImage = `url(${flickrLink})`; */
-        document.body.style.backgroundImage = `url(${unsplashLink})`;
-     };
-    getLinkToImageUnsplash();
+    if (isGithub) {
+        let timeOfDay = '';
+        const date = new Date();
+        const hours = date.getHours();
+        
+        if (hours >= 0 && hours < 6) {
+            timeOfDay = 'night';
+        } else if (hours >= 6 && hours < 12) {
+            timeOfDay = 'morning';
+        } else if (hours >= 12 && hours < 18) {
+            timeOfDay = 'afternoon';
+        } else {
+            timeOfDay = 'evening';
+        }
+        let bgNum = randomNum.toString().padStart(2, '0');
+        img.src = `https://raw.githubusercontent.com/vberezhnykh/momentum-images/assets/images/${timeOfDay}/${bgNum}.jpg`;
+        img.onload = () => {
+            document.body.style.backgroundImage = `url(https://raw.githubusercontent.com/vberezhnykh/momentum-images/assets/images/${timeOfDay}/${bgNum}.jpg)`;
+         };
+    } else if (isFlickr) {
+        flickrLink = newSetOfPhotos[randomNum].url_l;
+        img.src = `${flickrLink}`;
+        img.onload = () => {
+            document.body.style.backgroundImage = `url(${flickrLink})`;
+         };
+    } else if (isUnsplash) {
+        unsplashLink = unsplashSetOfPhotos[randomNum].urls.regular;
+        img.src=`${unsplashLink}`;
+        img.onload = () => {
+            document.body.style.backgroundImage = `url(${unsplashLink})`;
+         };
+         getLinkToImageUnsplash();
+    }
 }
 
 window.addEventListener('load', () => {
     setTimeout(setBg, 1000)
 })
 
+const githubButton = document.querySelector('.photos__github');
+const flickrButton = document.querySelector('.photos__flickr');
+const unsplashButton = document.querySelector('.photos__unsplash');
+
+function choosePhotoSource(elem) {
+    if (elem.target === githubButton && !isGithub) {
+        githubButton.classList.add('photos__github--active');
+        flickrButton.classList.remove('photos__flickr--active');
+        unsplashButton.classList.remove('photos__unsplash--active');
+        isGithub = true;
+        isFlickr = false;
+        isUnsplash = false;
+        setBg();
+    } else if (elem.target === flickrButton && !isFlickr) {
+        flickrButton.classList.add('photos__flickr--active');
+        githubButton.classList.remove('photos__github--active');
+        unsplashButton.classList.remove('photos__unsplash--active');
+        isFlickr = true;
+        isGithub = false;
+        isUnsplash = false;
+        setBg();
+    } else if (elem.target === unsplashButton && !isUnsplash) {
+        unsplashButton.classList.add('photos__unsplash--active');
+        githubButton.classList.remove('photos__github--active');
+        flickrButton.classList.remove('photos__flickr--active');
+        isUnsplash = true;
+        isFlickr = false;
+        isGithub = false;
+        setBg();
+    }
+}
+
+window.addEventListener('click', choosePhotoSource);
 
 function getSlideNext() {
     if (randomNum < 20) {
@@ -187,7 +276,13 @@ async function getWeather() {
     const wind = document.querySelector('.wind');
     const humidity = document.querySelector('.humidity');
     const city = document.querySelector('.city');
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.value}&lang=eт&appid=fab720c19713c688933ff49eb63ac915&units=metric`
+    let language = '';
+    if (currentLanguage === 'english') {
+        language = 'en';
+    } else if (currentLanguage === 'russian') {
+        language = 'ru';
+    }
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city.value}&lang=${language}&appid=fab720c19713c688933ff49eb63ac915&units=metric`
     const res = await fetch (url);
     const data = await res.json();
     
@@ -199,8 +294,14 @@ async function getWeather() {
         weatherIcon.classList.add(`owf-${data.weather[0].id}`)
         temperature.textContent = `${Math.round(data.main.temp)}°C`;
         weatherDescription.textContent = data.weather[0].description;
-        wind.textContent = `Wind speed: ${data.wind.speed} m/s`
-        humidity.textContent = `Humidity: ${data.main.humidity} %`;
+        if (currentLanguage === 'english') {
+            wind.textContent = `Wind speed: ${data.wind.speed} m/s`
+            humidity.textContent = `Humidity: ${data.main.humidity} %`;
+        } else if (currentLanguage === 'russian') {
+            wind.textContent = `Скорость ветра: ${data.wind.speed} м/с`;
+            humidity.textContent = `Влажность: ${data.main.humidity} %`;
+        }
+        
     /* }  */
 }
 
@@ -218,7 +319,12 @@ function randomQuote(min, max) {
 window.addEventListener('load', randomQuote(0,9));
 
 async function getQuotes() {
-    const quotes = 'quoteEn.json';
+    let quotes = '';
+    if (currentLanguage === 'english') {
+        quotes = 'quoteEn.json';
+    } else if (currentLanguage === 'russian') {
+        quotes = 'quoteRu.json';
+    }
     const res = await fetch(quotes);
     const data = await res.json();
     
@@ -392,9 +498,178 @@ player.querySelector('.volume-button').addEventListener('click', () => {
 })
 
 //8. Translation ==================================================//
-//10. Setting =====================================================//
-const state = {
-    language: ['en', 'ru'],
-    photoSourse: ['github', 'flickr', 'unsplash'],
-    blocks: ['time', 'date', 'greeting', 'quote', 'weather', 'audio']
+
+let currentLanguage = 'english';
+function changeLanguage(elem) {
+    const english = document.querySelector('.language__english');
+    const russian = document.querySelector('.language__russian');
+    if (elem.target === russian) {
+        russian.classList.add('language__russian--active');
+        english.classList.remove('language__english--active');
+        currentLanguage = 'russian';
+        getQuotes();
+        if (!isPlay) {
+            document.querySelector('.songName').textContent = 'Название песни';
+        };
+        document.querySelector('.settings-header__header').textContent = 'НАСТРОЙКИ';
+        document.querySelector('.hide_block__name').textContent = 'Спрятать';
+        document.querySelector('.hide_block__player').textContent = 'Плеер';
+        document.querySelector('.hide_block__weather').textContent = 'Погода';
+        document.querySelector('.hide_block__time').textContent = 'Время';
+        document.querySelector('.hide_block__date').textContent = 'Дата';
+        document.querySelector('.hide_block__greeting').textContent = 'Приветствие';
+        document.querySelector('.hide_block__quotes').textContent = 'Цитаты';
+        document.querySelector('.hide_block__todo-list').textContent = 'Список дел';
+        document.querySelector('.language__name').textContent = 'Язык';
+        document.querySelector('.language__english').textContent = 'Английский';
+        document.querySelector('.language__russian').textContent = 'Русский';
+        document.querySelector('.photos__name').textContent = 'Источник фото';
+        document.querySelector('.city').value = 'Москва';
+        document.querySelector('.city').placeholder = 'Введите город';
+        document.querySelector('.weather__provider-changable').textContent = 'По данным ';
+        getWeather();
+    } else if (elem.target === english) {
+        english.classList.add('language__english--active');
+        russian.classList.remove('language__russian--active');
+        currentLanguage = 'english';
+        getQuotes();
+        if (!isPlay) {
+            document.querySelector('.songName').textContent = 'Music Song';
+        };
+        document.querySelector('.settings-header__header').textContent = 'SETTINGS';
+        document.querySelector('.hide_block__name').textContent = 'Hide';
+        document.querySelector('.hide_block__player').textContent = 'Player';
+        document.querySelector('.hide_block__weather').textContent = 'Weather';
+        document.querySelector('.hide_block__time').textContent = 'Time';
+        document.querySelector('.hide_block__date').textContent = 'Date';
+        document.querySelector('.hide_block__greeting').textContent = 'Greeting';
+        document.querySelector('.hide_block__quotes').textContent = 'Quotes';
+        document.querySelector('.hide_block__todo-list').textContent = 'Todo List';
+        document.querySelector('.language__name').textContent = 'Language';
+        document.querySelector('.language__english').textContent = 'English';
+        document.querySelector('.language__russian').textContent = 'Russian';
+        document.querySelector('.photos__name').textContent = 'Photo source';
+        document.querySelector('.city').value = 'London';
+        document.querySelector('.city').placeholder = 'Enter city';
+        document.querySelector('.weather__provider-changable').textContent = 'Provided by ';
+        getWeather();
+    }
 }
+
+window.addEventListener('click', changeLanguage)
+//10. Setting =====================================================//
+
+function showSettings() {
+    const settings = document.querySelector('.settings__menu');
+    const socialMedia = document.querySelector('.social-media-wrapper');
+    settings.classList.add('settings__menu--visible');
+    settingsButton.classList.add('settings__button--hidden');
+    socialMedia.classList.add('social-media-wrapper--hidden')
+}
+
+const settingsButton = document.querySelector('.settings__button');
+settingsButton.addEventListener('click', showSettings);
+
+function hideSettings(e) {
+    const settings = document.querySelector('.settings__menu--visible');
+    const socialMedia = document.querySelector('.social-media-wrapper');
+    settingsButton.classList.remove('settings__button--hidden');
+    settings.classList.remove('settings__menu--visible');
+    socialMedia.classList.remove('social-media-wrapper--hidden')
+}
+
+const closeSettingsButton = document.querySelector('.settings-header__button');
+closeSettingsButton.addEventListener('click', hideSettings);
+
+const hidePlayerButton = document.querySelector('.hide_block__player');
+const audioPlayer = document.querySelector('.player');
+let audioPlayerIsHidden = false;
+
+const hideWeatherButton = document.querySelector('.hide_block__weather');
+const weather = document.querySelector('.weather');
+let weatherIsHidden = false;
+
+const hideTimeButton = document.querySelector('.hide_block__time');
+const time = document.querySelector('.time');
+let timeIsHidden = false;
+
+const hideDateButton = document.querySelector('.hide_block__date');
+const date = document.querySelector('.date');
+let dateIsHidden = false;
+
+const hideGreetingButton = document.querySelector('.hide_block__greeting');
+const greeting = document.querySelector('.greeting-container');
+let greetingIsHidden = false;
+
+const hideQuotesButton = document.querySelector('.hide_block__quotes');
+const quotes = document.querySelector('.quote-wrapper');
+let quotesIsHidden = false;
+
+function hideBlock(block) {
+    if (block.target === hidePlayerButton) {
+        if (!audioPlayerIsHidden) {
+            audioPlayer.classList.add('player--hidden');
+            hidePlayerButton.classList.add('hide_block__player--hidden');
+            audioPlayerIsHidden = true;
+            isPlay = true;
+            playAudio();
+            togglePause();
+        } else {
+            audioPlayer.classList.remove('player--hidden');
+            hidePlayerButton.classList.remove('hide_block__player--hidden');
+            audioPlayerIsHidden = false;
+        }
+    } else if (block.target === hideWeatherButton) {
+        if (!weatherIsHidden) {
+            weather.classList.add('weather--hidden');
+            hideWeatherButton.classList.add('hide_block__weather--hidden');
+            weatherIsHidden = true;
+        } else {
+            weather.classList.remove('weather--hidden');
+            hideWeatherButton.classList.remove('hide_block__weather--hidden');
+            weatherIsHidden = false;
+        } 
+    } else if (block.target === hideTimeButton) {
+        if (!timeIsHidden) {
+            time.classList.add('time--hidden');
+            hideTimeButton.classList.add('hide_block__time--hidden');
+            timeIsHidden = true;
+        } else {
+            time.classList.remove('time--hidden');
+            hideTimeButton.classList.remove('hide_block__time--hidden');
+            timeIsHidden = false;
+        }
+    } else if (block.target === hideDateButton) {
+        if (!dateIsHidden) {
+            date.classList.add('date--hidden');
+            hideDateButton.classList.add('hide_block__date--hidden');
+            dateIsHidden = true;
+        } else {
+            date.classList.remove('date--hidden');
+            hideDateButton.classList.remove('hide_block__date--hidden');
+            dateIsHidden = false;
+        }
+    } else if (block.target === hideGreetingButton) {
+        if (!greetingIsHidden) {
+            greeting.classList.add('greeting-container--hidden');
+            hideGreetingButton.classList.add('hide_block__greeting--hidden');
+            greetingIsHidden = true;
+        } else {
+            greeting.classList.remove('greeting-container--hidden');
+            hideGreetingButton.classList.remove('hide_block__greeting--hidden');
+            greetingIsHidden = false;
+        }
+    } else if (block.target === hideQuotesButton) {
+        if (!quotesIsHidden) {
+            quotes.classList.add('quote-wrapper--hidden');
+            hideQuotesButton.classList.add('hide_block__quotes--hidden');
+            quotesIsHidden = true;
+        } else {
+            quotes.classList.remove('quote-wrapper--hidden');
+            hideQuotesButton.classList.remove('hide_block__quotes--hidden');
+            quotesIsHidden = false; 
+        }
+    }
+}
+
+window.addEventListener('click', hideBlock)

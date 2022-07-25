@@ -40,6 +40,12 @@ body {
     align-items: center; 
 }
 
+.player--hidden {
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s;
+}
+
 .player-controls {
     display: flex;
     align-items: center;
@@ -211,6 +217,12 @@ body {
     padding: 0 7px 7px 7px;
 }
 
+.weather--hidden {
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s;
+}
+
 .weather__main-info {
     display: flex;
     justify-content: space-between;
@@ -228,6 +240,11 @@ body {
 
 .temperature {
     font-size: 30px;
+}
+
+.description {
+    width: 100%;
+    text-align: left;
 }
 
 .weather__extra-info {
@@ -293,11 +310,23 @@ body {
     letter-spacing: 10px;
 }
 
+.time--hidden {
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s;
+}
+
 .date {
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 28px;
+}
+
+.date--hidden {
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s;
 }
 
 .greeting-container {
@@ -308,6 +337,12 @@ body {
     justify-content: stretch;
     align-items: center;
     font-size: 35px;
+}
+
+.greeting-container--hidden {
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s;
 }
 
 .greeting {
@@ -373,11 +408,16 @@ body {
     background-image: url('../assets/svg/settings.svg');
     background-color: rgba(255,255,255,0.5);
     background-size: cover;
-    width: 48px;
+    width: 40px;
     height: 40px;
     padding: 0;
     border: none;
     border-radius: 50%;
+}
+
+.settings__button--hidden {
+    opacity: 0;
+    visibility: hidden;
 }
 
 .settings__button:hover {
@@ -397,9 +437,9 @@ body {
     width: 25%;
     height: 40%;
     background-color: white;
-    opacity: 0.8;
+    opacity: 0;
     border-radius: 10px;
-    visibility: visible;
+    visibility: hidden;
     color: black;
     display: flex;
     flex-direction: column;
@@ -409,12 +449,39 @@ body {
     transition: 0.3s;
 }
 
-.settings__menu--hidden {
-    visibility: hidden;
+.settings__menu--visible {
+    opacity: 0.9;
+    visibility: visible;
 }
 
-.settings__header {
+.settings-header {
     margin: 0;
+    display: flex;
+    width: 100%;
+}
+
+.settings-header__header {
+    justify-content: flex-end;
+    width: 95%;
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+.settings-header__button {
+    background-image: url('../assets/svg/close.svg');
+    background-size: contain;
+    border: none;
+    background-color: unset;
+    background-repeat: no-repeat;
+    width: 20px;
+    height: 20px;
+    justify-content: flex-end;
+    width: 5%;
+    cursor: pointer;
+}
+
+.settings-header__button:hover {
+    transform: scale(1.2);
 }
 
 .hide_block {
@@ -424,7 +491,7 @@ body {
 }
 
 .hide_block > div {
-    width: 20%;
+    width: 17%;
     border: 1px solid black;
     border-radius: 5px;
     margin-right: 10px;
@@ -457,6 +524,12 @@ body {
     font-size: 18px;
 }
 
+.hide_block__greeting,
+.hide_block__todo-list,
+.hide_block__time {
+    flex-grow: 1 !important;
+}
+
 .hide_block__name:hover {
     transform: unset !important;
 }
@@ -469,7 +542,8 @@ body {
 .language > div {
     border: 1px solid black;
     cursor: pointer;
-    border-radius: 5px
+    border-radius: 5px;
+    flex-grow: 1 !important;
 }
 
 .language > div:hover {
@@ -477,7 +551,7 @@ body {
 }
 
 .language__name {
-    width: 30% !important;
+    width: 30%;
     border: none !important;
     gap: 0 !important;
     text-align: left;
@@ -497,7 +571,6 @@ body {
 
 .language__english--active,
 .language__russian--active {
-    width: 35%;
     background-color: lightgreen;
     transition: 0.3s;
 }
@@ -521,13 +594,12 @@ body {
 .photos__github--active,
 .photos__flickr--active,
 .photos__unsplash--active {
-    width: 20%;
     background-color: lightgreen;
     transition: 0.3s;
 }
 
 .photos__name {
-    width: 30% !important;
+    width: 36% !important;
     border: none !important;
     cursor: unset !important;
     text-align: left;
@@ -539,6 +611,34 @@ body {
     transform: unset !important;
 }
 
+.social-media-wrapper {
+    position: absolute;
+    bottom: 6px;
+    left: 70px;
+}
+
+.social-media-wrapper--hidden {
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.2s;
+}
+
+.social-media {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    gap: 10px;
+    list-style: none;
+}
+
+.social-media__rs-school > a > img {
+    height: 40px;
+}
+
+.social-media > li :hover {
+    transform: scale(1.2);
+}
+
 .quote-wrapper {
     display: flex;
     flex-direction: column;
@@ -546,6 +646,12 @@ body {
     justify-content: space-evenly;
     width: 40%;
     visibility: visible;
+}
+
+.quote-wrapper--hidden {
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s;
 }
 
 .change_quote {
@@ -570,7 +676,7 @@ body {
 }
 
 .change_quote:active {
-    /* transform: rotate(0deg); */
+    /* transform: rotate(360deg); */
 }
 
 .quote {
