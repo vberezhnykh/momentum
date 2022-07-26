@@ -84,9 +84,12 @@ body {
 }
 
 .player-icon:active, 
-.player-previous:active,
 .player-next:active {
     transform: scale(1.1);
+}
+
+.player-previous:active {
+    transform: rotate(180deg) scale(1.1);
 }
 
 .player-next {
