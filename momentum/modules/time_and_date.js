@@ -1,5 +1,6 @@
 import { showGreeting } from './greeting.js';
-import { currentLanguage } from '../script.js'
+/* import { currentLanguage } from './translation.js' */
+import { currentLanguage } from "./local_storage.js";
 
 function showTime() {
     const date = new Date();

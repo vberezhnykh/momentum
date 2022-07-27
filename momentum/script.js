@@ -1,5 +1,5 @@
 import { showTime } from "./modules/time_and_date.js";
-import { setLocalStorage, getLocalStorage } from "./modules/local_storage.js";
+import { setLocalStorage, getLocalStorage, currentLanguage } from "./modules/local_storage.js";
 import { getWeather } from "./modules/weather.js";
 import { getQuotes, changeQuote, randomQuote } from "./modules/get_quote.js";
 import { playAudio, togglePause, togglePauseArrow, playNext, playPrev, audio, button } from "./modules/audio-player.js";
@@ -7,13 +7,14 @@ import {addPlaylistItem, showCurrentTime, animateProgressBar, setDurationAndVolu
 import playList from "./modules/playList.js";
 import { getLinkToImageUnsplash, getLinkToImageFlickr } from './modules/flickr_unsplashAPI.js'
 import { getRandomNum, setBg, choosePhotoSource, getSlideNext, getSlidePrev} from './modules/background-slider.js'
-import {currentLanguage, changeLanguage} from './modules/translation.js';
+import { changeLanguage, setInitialLanguage } from './modules/translation.js';
 import {hideSettings, showSettings, hideBlock} from './modules/settings.js';
+import {openTodoList,addTask, closeToDoList} from './modules/todo.js';
 
 
 // Local storage ==========
 window.addEventListener('beforeunload', setLocalStorage);
-window.addEventListener('load', getLocalStorage)
+window.addEventListener('load', getLocalStorage);
 
 // Time and Date ==========
 window.addEventListener('load', showTime)
@@ -71,6 +72,7 @@ volumeSlider.addEventListener('click', animateVolumeSlider, false);
 player.querySelector('.volume-button').addEventListener('click', muteAudio)
 
 // Translation ==========
+window.addEventListener('load', setInitialLanguage);
 window.addEventListener('click', changeLanguage);
 
 // Settings ==========
@@ -82,5 +84,33 @@ settingsButton.addEventListener('click', showSettings);
 closeSettingsButton.addEventListener('click', hideSettings);
 window.addEventListener('click', hideBlock)
 
+// Todo list ==========
+const openBtn = document.querySelector('.todo__open-btn');
+openBtn.addEventListener('click', openTodoList)
+const addTaskButton = document.querySelector('.todo-input__add-btn');
+addTaskButton.addEventListener('click', addTask);
+const input = document.querySelector('.todo-input__text');
+input.addEventListener('keypress', (event) => {
+    event.key === 'Enter' ? addTaskButton.click() : false;
+    event.key === 'Enter' ? input.value = '' : false;
+})
+const closeToDoListBtn = document.querySelector('.todo-header__close-btn');
+closeToDoListBtn.addEventListener('click', closeToDoList);
+
 //==========
-export { currentLanguage }; 
+/* console.log(
+`1. Часы и календарь + 15;
+2. Приветствие + 10;
+3. Смена фонового изображения +20;
+4. Виджет погоды. +15;
+5. Виджет цитата дня. + 10;
+6. Аудиопдеер + 15;
+7. Продвинутый аудиоплеер +17. (не реализован функционал проигрывания трека кликом по кнопке Play/Pause рядом с ним в плейлисте);
+8. Перевод приложения на два языка (en/ru) + 15.
+9. Получение фонового изображения от API. +10;
+10. Настройки приложения +12. (1) не реализовано указание тега для которых API присылает фото; 2) настройки не сохраняются при перезагрузке страницы);
+11. Дополнительный функционал + 10;
+
+Итого: 149 балла.`
+) */
+

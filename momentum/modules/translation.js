@@ -2,7 +2,27 @@ import {getWeather} from './weather.js';
 import {getQuotes} from './get_quote.js';
 import {isPlay} from './audio-player.js';
 
-let currentLanguage = 'english';
+let currentLanguage = '';
+if (localStorage.language !== '') {
+    currentLanguage = localStorage.language;
+} else {
+    currentLanguage = 'english';
+}
+
+function setLanguage(value) {
+    currentLanguage = value;
+}
+
+function setInitialLanguage(language) {
+    const english = document.querySelector('.language__english');
+    const russian = document.querySelector('.language__russian');
+    language = localStorage.language;
+    if (language === 'russian') {
+        changeLanguage(russian);
+    } else if (language === 'english') {
+        changeLanguage(english)
+    }
+}
 
 function changeLanguage(elem) {
     const english = document.querySelector('.language__english');
@@ -60,4 +80,4 @@ function changeLanguage(elem) {
     }
 }
 
-export {currentLanguage, changeLanguage}
+export {currentLanguage, changeLanguage, setLanguage, setInitialLanguage}

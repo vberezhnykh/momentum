@@ -1,4 +1,5 @@
-import { currentLanguage } from '../script.js';
+/* import { currentLanguage } from './translation.js'; */
+import { currentLanguage } from "./local_storage.js";
 
 async function getWeather() {
     const weatherIcon = document.querySelector('.icon');

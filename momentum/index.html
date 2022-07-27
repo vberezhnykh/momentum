@@ -84,7 +84,7 @@
                         <div class="hide_block__date">Date</div>
                         <div class="hide_block__greeting">Greeting</div>
                         <div class="hide_block__quotes">Quotes</div>
-                        <div class="hide_block__todo-list hide_block__todo-list--hidden">Todo List</div>
+                        <div class="hide_block__todo-list">Todo List</div>
                     </div>
                     <div class="language">
                         <div class="language__name">Language</div>
@@ -110,7 +110,24 @@
                 <div class="quote"></div>
                 <div class="author"></div>
             </div>
-            <div class="todo-list"></div>
+            <div class="todo">
+                <div class="todo-header">
+                    <h2 class="todo-header__caption">To-Do List</h2>
+                    <button class="todo-header__close-btn"></button>
+                </div>
+                <div class="todo-input">
+                    <input class="todo-input__text" type="text" placeholder="Task...">
+                    <button class="todo-input__add-btn" type="submit">Add</button>
+                </div>
+                <div class="inbox">
+                    <ul class="inbox__list">
+                    </ul>
+                </div>
+                <div class="completed">
+                    <ul class="completed__list"></ul>
+                </div>
+            </div>
+            <button class="todo__open-btn"></button>
         </footer>
     </div> 
     <script type="module" src="script.js"></script>

@@ -416,6 +416,7 @@ body {
     padding: 0;
     border: none;
     border-radius: 50%;
+    cursor: pointer;
 }
 
 .settings__button--hidden {
@@ -692,6 +693,175 @@ body {
     transition: 0.3s;
 } 
 
-.todo-list {
-    width: 30%;
+.todo {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    width: 20%;
+    max-height: 40vh;
+    background-color: white;
+    border-radius: 10px;
+    color: black;
+    padding: 7px;
+    opacity: 0;
+    visibility: hidden;
+    overflow-y: scroll;
+}
+
+.todo--visible {
+    opacity: 0.9;
+    visibility: visible;
+    transition: 0.3s;
+}
+
+.todo-header {
+    display: flex;
+}
+
+.todo-header__caption {
+    margin-top: 0;
+    width: 100%;
+}
+
+.todo-header__close-btn {
+    background-image: url('../assets/svg/close.svg');
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    margin: 0;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.todo-header__close-btn:hover {
+    transform: scale(1.1);
+}
+
+
+
+.todo-input {
+    display: flex;
+    gap: 1%;
+}
+
+.todo-input__text {
+    border-radius: 5px;
+    width: 79%;
+    padding-left: 10px;
+}
+
+.todo-input__add-btn {
+    width: 20%;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.todo-input__add-btn:hover {
+    transform: scale(1.1);
+    background-color: lightgreen;
+}
+
+.inbox__list,
+.completed__list {
+    list-style: none;
+    padding-left: 5px;
+}
+
+.inbox__item,
+.completed_item {
+    border: 1px solid black;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    width: 100%;
+}
+
+.inbox__item::marker {
+    height: 40px !important;
+    
+}
+
+.inbox {
+}
+
+.inbox__header {
+    color: orange;
+}
+
+.inbox__wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.inbox__wrapper--basic {
+}
+
+.inbox__wrapper--done {
+    background: linear-gradient(to right, rgba(144,238,144, 0.7) 92%, rgba(255,255,255, 0.7) 8%);
+    transition: 0.3s;
+}
+
+.inbox__task-text {
+    flex-grow: 1;
+    text-align: left;
+    padding-left: 5px;
+}
+
+.inbox__delete-button {
+    background-image: url('../assets/svg/close.svg');
+    width: 24px;
+    height: 24px;
+    border: 0;
+    background-color: transparent;
+    padding: 0;
+    cursor: pointer;
+}
+
+.inbox__delete-button:hover {
+    transform: scale(1.1);
+    background-color: red;
+    border-radius: 5px;
+}
+
+.inbox__checkbox {
+    background-image: url('../assets/svg/checkbox-blank.svg');
+    border: 0;
+    background-color: transparent;
+    padding: 0;
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+}
+
+.inbox__checkbox--done {
+    background-image: url('../assets/svg/checkbox-done.svg');
+    transition: 0.3s;
+}
+
+.completed__header {
+    color: green;
+}
+
+.todo__open-btn {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background-image: url('../assets/svg/todo-list.svg');
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 10px;
+    opacity: 0.8;
+}
+
+.todo__open-btn:hover {
+    opacity: 1;
+    transform: scale(1.1);
+    cursor:pointer
+}
+
+.todo__open-btn--hidden {
+    opacity: 0;
+    visibility: hidden;
 }
