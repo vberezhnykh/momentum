@@ -12,10 +12,65 @@ function closeToDoList() {
     openBtn.classList.remove('todo__open-btn--hidden');
 }
 
-function addTask() {
-    const inbox = document.querySelector('.inbox');
-    const inboxHeader = document.createElement('h2');
-    const inboxHeaders = document.querySelectorAll('.inbox__header');
+function loadTasks() {
+    let tasks = Array.from(JSON.parse(localStorage.getItem('tasks')));
+
+    tasks.forEach(task => {
+        const completedValue = task.completed;
+        const textValue = task.name;
+
+        const inbox = document.querySelector('.inbox');
+        const inboxHeader = document.createElement('h2');
+        const inboxHeaders = document.querySelectorAll('.inbox__header'); 
+
+        if (completedValue === false) {
+            createItem();
+            const text = document.querySelector/* All */('.inbox__task-text--unset');
+            text.textContent = textValue;
+            text.classList.remove('inbox__task-text--unset');
+            text.classList.add('inbox__task-text');
+            const button = document.querySelector('.inbox__checkbox--unset');
+            button.classList.remove('inbox__checkbox--unset');
+            button.classList.add('inbox__checkbox');
+    
+            if (inboxHeaders.length < 1) {
+                inbox.prepend(inboxHeader);
+                inboxHeader.textContent = 'Inbox';
+                inboxHeader.classList.add('inbox__header');
+            }
+        } else if (completedValue === true) {
+            createItem();
+            const text = document.querySelector('.inbox__task-text--unset');
+            
+            text.textContent = textValue;
+            text.classList.remove('inbox__task-text--unset');
+            text.classList.add('inbox__task-text--done');
+            
+            const button = document.querySelector('.inbox__checkbox--unset')
+            const wrapper = button.parentElement;
+            const completedList = document.querySelector('.completed__list');
+            const listItem = wrapper.parentElement;
+                        
+            button.classList.add('inbox__checkbox--done');
+            button.classList.remove('inbox__checkbox--unset');
+            wrapper.classList.add('inbox__wrapper--done');
+            wrapper.classList.remove('inbox__wrapper--basic');
+            completedList.prepend(listItem);
+
+            const completedHeader = document.querySelector('.completed__header');
+            const completed = document.querySelector('.completed');
+            if (!completed.contains(completedHeader)) {
+                const header = document.createElement('h2');
+                header.classList.add('completed__header');
+                header.textContent = 'Completed';
+                completed.prepend(header);
+            }
+        }
+    })
+}
+window.onload = loadTasks;
+
+function createItem() {
     const inboxList = document.querySelector('.inbox__list');
     const li = document.createElement('li');
     const inboxWrapper = document.createElement('div');
@@ -23,31 +78,76 @@ function addTask() {
     const text = document.createElement('span');
     const taskText = document.querySelector('.todo-input__text');
     const deleteButton = document.createElement('button');  
-    
+     
     li.classList.add('inbox__item');
     inboxList.append(li);
     inboxWrapper.classList.add('inbox__wrapper', 'inbox__wrapper--basic');
     li.append(inboxWrapper);
-    checkBox.classList.add('inbox__checkbox');
+    checkBox.classList.add('inbox__checkbox--unset');
     inboxWrapper.append(checkBox);
     checkBox.addEventListener('click', completeTask);
-    text.classList.add('inbox__task-text');
+    text.classList.add('inbox__task-text--unset');
+    
     text.textContent = taskText.value;
     inboxWrapper.append(text);
+
     deleteButton.classList.add('inbox__delete-button');
     inboxWrapper.append(deleteButton);
     deleteButton.addEventListener('click', deleteTask);
+}
+
+function addTask() {
+    const inbox = document.querySelector('.inbox');
+    const inboxHeader = document.createElement('h2');
+    const inboxHeaders = document.querySelectorAll('.inbox__header');
+    const taskText = document.querySelector('.todo-input__text');
+
+    if (taskText.value === '') {
+        alert('Please add some task');
+        return;
+    }
+    
+    let tasks = Array.from(JSON.parse(localStorage.getItem('tasks')));
+    tasks.forEach(task => {
+        if (task.name === taskText.value) {
+            alert('Task already exist');
+            taskText.value === '';
+            return;
+        };
+    });
+
+    createItem();
+    const text = document.querySelector('.inbox__task-text--unset');
+    text.classList.add('inbox__task-text');
+    text.classList.remove('inbox__task-text--unset');
+    const checkBox = document.querySelector('.inbox__checkbox--unset');
+    checkBox.classList.remove('inbox__checkbox--unset');
+    checkBox.classList.add('inbox__checkbox');
+    
+    localStorage.setItem('tasks', JSON.stringify([...JSON.parse(localStorage.getItem('tasks') || '[]'), { name: taskText.value, completed: false }]));
 
     if (inboxHeaders.length < 1) {
         inbox.prepend(inboxHeader);
         inboxHeader.textContent = 'Inbox';
         inboxHeader.classList.add('inbox__header');
     }
+
+    /* const input = document.querySelector('.todo-input__text'); */
+    taskText.value = '';
 }
 
 function deleteTask(elem) {
     const button = elem.target;
-    const listItem = button.parentElement.parentElement;
+    const wrapper = button.parentElement;
+    const text = wrapper.childNodes[1];
+    let tasks = Array.from(JSON.parse(localStorage.getItem('tasks')));
+    tasks.forEach(task => {
+        if (task.name === text.textContent) {
+            tasks.splice(tasks.indexOf(task), 1);
+        }
+    })
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+    const listItem = wrapper.parentElement;
     listItem.remove();
 
     const deleteButtons = document.querySelectorAll('.inbox__delete-button');
@@ -68,7 +168,19 @@ function completeTask(elem) {
     const completedList = document.querySelector('.completed__list');
     const inboxList = document.querySelector('.inbox__list');
     const completedHeader = document.querySelector('.completed__header');
+    const deleteBtn = wrapper.childNodes[2];
     
+    const text = wrapper.childNodes[1];
+    let tasks = Array.from(JSON.parse(localStorage.getItem('tasks')));
+    tasks.forEach(task => {
+        if (task.name === text.textContent && task.completed === false) {
+            task.completed = true;
+        } else if (task.name === text.textContent && task.completed === true) {
+            task.completed = false;
+        }
+    })
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+
     if (!completed.contains(completedHeader)) {
         const header = document.createElement('h2');
         header.classList.add('completed__header');
@@ -78,13 +190,23 @@ function completeTask(elem) {
 
     if (!button.classList.contains('inbox__checkbox--done')) {
         button.classList.add('inbox__checkbox--done');
+        button.classList.remove('inbox__checkbox');
         wrapper.classList.add('inbox__wrapper--done');
         wrapper.classList.remove('inbox__wrapper--basic');
+        deleteBtn.classList.remove('inbox__delete-button');
+        deleteBtn.classList.add('inbox__delete-button--done');
+        text.classList.add('inbox__task-text--done');
+        text.classList.remove('inbox__task-text');
         completedList.prepend(listItem);
     } else {
         button.classList.remove('inbox__checkbox--done');
+        button.classList.add('inbox__checkbox');
         wrapper.classList.remove('inbox__wrapper--done');
         wrapper.classList.add('inbox__wrapper--basic');
+        deleteBtn.classList.remove('inbox__delete-button--done');
+        deleteBtn.classList.add('inbox__delete-button');
+        text.classList.add('inbox__task-text');
+        text.classList.remove('inbox__task-text--done');
         inboxList.append(listItem);
     }
 

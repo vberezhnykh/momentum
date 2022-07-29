@@ -4,6 +4,7 @@ function setLocalStorage() {
     const name = document.querySelector('.input');
     const city = document.querySelector('.city');
     const backgroundImage = document.querySelector('.body');
+
     localStorage.setItem('city', city.value);
     localStorage.setItem('name', name.value);
     localStorage.setItem('backgroundImage', backgroundImage.style.backgroundImage);
@@ -28,7 +29,7 @@ function getLocalStorage() {
     if (localStorage.getItem('language')) {
         let value = localStorage.getItem('language');
         setLanguage(value);
-    }  
+    }
 }
 
 export { setLocalStorage, getLocalStorage, currentLanguage }

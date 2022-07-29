@@ -802,13 +802,21 @@ body {
     transition: 0.3s;
 }
 
-.inbox__task-text {
+
+
+.inbox__task-text,
+.inbox__task-text--done {
     flex-grow: 1;
     text-align: left;
     padding-left: 5px;
 }
 
-.inbox__delete-button {
+.inbox__task-text--unset {
+    
+}
+
+.inbox__delete-button,
+.inbox__delete-button--done {
     background-image: url('../assets/svg/close.svg');
     width: 24px;
     height: 24px;
@@ -818,10 +826,15 @@ body {
     cursor: pointer;
 }
 
-.inbox__delete-button:hover {
+.inbox__delete-button:hover,
+.inbox__delete-button--done:hover {
     transform: scale(1.1);
     background-color: red;
     border-radius: 5px;
+}
+
+.inbox__checkbox--unset {
+    
 }
 
 .inbox__checkbox {
@@ -836,6 +849,12 @@ body {
 
 .inbox__checkbox--done {
     background-image: url('../assets/svg/checkbox-done.svg');
+    border: 0;
+    background-color: transparent;
+    padding: 0;
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
     transition: 0.3s;
 }
 
