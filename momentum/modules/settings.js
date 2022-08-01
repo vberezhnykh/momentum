@@ -40,26 +40,35 @@ const hideQuotesButton = document.querySelector('.hide_block__quotes');
 const quotes = document.querySelector('.quote-wrapper');
 let quotesIsHidden = false;
 
+const hideTodoButton = document.querySelector('.hide_block__todo-list');
+const todoOpenButton = document.querySelector('.todo__open-btn');
+const todo = document.querySelector('.todo');
+let todoIsHidden = false;
+
 function hideBlock(block) {
     if (block.target === hidePlayerButton) {
         if (!audioPlayerIsHidden) {
             audioPlayer.classList.add('player--hidden');
             hidePlayerButton.classList.add('hide_block__player--hidden');
             audioPlayerIsHidden = true;
+            /* localStorage.setItem('isHidden', JSON.stringify([...JSON.parse(localStorage.getItem('isHidden') || '[]'), { name: 'audioPlayer', isHidden: true}])); */
         } else {
             audioPlayer.classList.remove('player--hidden');
             hidePlayerButton.classList.remove('hide_block__player--hidden');
             audioPlayerIsHidden = false;
+            /* localStorage.setItem('isHidden', JSON.stringify([...JSON.parse(localStorage.getItem('isHidden') || '[]'), { name: 'audioPlayer', isHidden: false}])); */
         }
     } else if (block.target === hideWeatherButton) {
         if (!weatherIsHidden) {
             weather.classList.add('weather--hidden');
             hideWeatherButton.classList.add('hide_block__weather--hidden');
             weatherIsHidden = true;
+            /* localStorage.setItem('isHidden', JSON.stringify([...JSON.parse(localStorage.getItem('isHidden') || '[]'), { name: 'weather', isHidden: true }])); */
         } else {
             weather.classList.remove('weather--hidden');
             hideWeatherButton.classList.remove('hide_block__weather--hidden');
             weatherIsHidden = false;
+            /* localStorage.setItem('isHidden', JSON.stringify([...JSON.parse(localStorage.getItem('isHidden') || '[]'), { name: 'weather', isHidden: false }])); */
         } 
     } else if (block.target === hideTimeButton) {
         if (!timeIsHidden) {
@@ -101,10 +110,22 @@ function hideBlock(block) {
             hideQuotesButton.classList.remove('hide_block__quotes--hidden');
             quotesIsHidden = false; 
         }
+    } else if (block.target === hideTodoButton) {
+        if (!todoIsHidden) {
+            todo.classList.remove('todo--visible');
+            todoOpenButton.classList.add('todo__open-btn--hidden');
+            hideTodoButton.classList.add('hide_block__todo-list--hidden');
+            todoIsHidden = true;
+        } else {
+            todoOpenButton.classList.remove('todo__open-btn--hidden');
+            hideTodoButton.classList.remove('hide_block__todo-list--hidden');
+            todoIsHidden = false;
+        }
     }
 }
 
+function isHidden() {
+    console.log(audioPlayerIsHidden, weatherIsHidden, timeIsHidden, dateIsHidden, greetingIsHidden, quotesIsHidden, todoIsHidden)
+}
 
-
-
-export {hideSettings, showSettings, hideBlock}
+export {hideSettings, showSettings, hideBlock, isHidden}

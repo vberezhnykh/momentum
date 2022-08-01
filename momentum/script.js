@@ -8,9 +8,10 @@ import playList from "./modules/playList.js";
 import { getLinkToImageUnsplash, getLinkToImageFlickr } from './modules/flickr_unsplashAPI.js'
 import { getRandomNum, setBg, choosePhotoSource, getSlideNext, getSlidePrev} from './modules/background-slider.js'
 import { changeLanguage, setInitialLanguage } from './modules/translation.js';
-import {hideSettings, showSettings, hideBlock} from './modules/settings.js';
+import {hideSettings, showSettings, hideBlock, isHidden} from './modules/settings.js';
 import {openTodoList,addTask, closeToDoList} from './modules/todo.js';
 
+window.onload = isHidden;
 
 // Local storage ==========
 window.addEventListener('beforeunload', setLocalStorage);
