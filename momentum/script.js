@@ -11,7 +11,7 @@ import { changeLanguage, setInitialLanguage } from './modules/translation.js';
 import {hideSettings, showSettings, hideBlock, isHidden} from './modules/settings.js';
 import {openTodoList,addTask, closeToDoList} from './modules/todo.js';
 
-window.onload = isHidden;
+/* window.onload = isHidden; */
 
 // Local storage ==========
 window.addEventListener('beforeunload', setLocalStorage);

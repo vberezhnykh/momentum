@@ -13,8 +13,11 @@ function closeToDoList() {
 }
 
 function loadTasks() {
+    const storage = window.localStorage;
+    if(!Object.keys(storage).includes('tasks')) {
+        return false;
+    };
     let tasks = Array.from(JSON.parse(localStorage.getItem('tasks')));
-
     tasks.forEach(task => {
         const completedValue = task.completed;
         const textValue = task.name;
@@ -107,33 +110,40 @@ function addTask() {
         return;
     }
     
-    let tasks = Array.from(JSON.parse(localStorage.getItem('tasks')));
-    tasks.forEach(task => {
-        if (task.name === taskText.value) {
-            alert('Task already exist');
-            taskText.value === '';
-            return;
+    let isCreated = false;
+    const storage = window.localStorage;
+    if(Object.keys(storage).includes('tasks')) {
+        
+        let tasks = (Array.from(JSON.parse(localStorage.getItem('tasks'))));
+        tasks.forEach(task => {
+            if (task.name === taskText.value && task.completed === false) {
+                alert('Task already exist');
+                taskText.value === '';
+                isCreated = true;
         };
-    });
-
-    createItem();
-    const text = document.querySelector('.inbox__task-text--unset');
-    text.classList.add('inbox__task-text');
-    text.classList.remove('inbox__task-text--unset');
-    const checkBox = document.querySelector('.inbox__checkbox--unset');
-    checkBox.classList.remove('inbox__checkbox--unset');
-    checkBox.classList.add('inbox__checkbox');
+        })     
+    } 
+    if (isCreated) {
+        return
+    } else {
+        createItem();
+        const text = document.querySelector('.inbox__task-text--unset');
+        text.classList.add('inbox__task-text');
+        text.classList.remove('inbox__task-text--unset');
+        const checkBox = document.querySelector('.inbox__checkbox--unset');
+        checkBox.classList.remove('inbox__checkbox--unset');
+        checkBox.classList.add('inbox__checkbox');
+        
+        localStorage.setItem('tasks', JSON.stringify([...JSON.parse(localStorage.getItem('tasks') || '[]'), { name: taskText.value, completed: false }]));
     
-    localStorage.setItem('tasks', JSON.stringify([...JSON.parse(localStorage.getItem('tasks') || '[]'), { name: taskText.value, completed: false }]));
-
-    if (inboxHeaders.length < 1) {
-        inbox.prepend(inboxHeader);
-        inboxHeader.textContent = 'Inbox';
-        inboxHeader.classList.add('inbox__header');
+        if (inboxHeaders.length < 1) {
+            inbox.prepend(inboxHeader);
+            inboxHeader.textContent = 'Inbox';
+            inboxHeader.classList.add('inbox__header');
+        }
+        taskText.value = '';
+        isCreated = false;
     }
-
-    /* const input = document.querySelector('.todo-input__text'); */
-    taskText.value = '';
 }
 
 function deleteTask(elem) {

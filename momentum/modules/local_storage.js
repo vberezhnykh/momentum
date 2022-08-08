@@ -33,4 +33,4 @@ function getLocalStorage() {
 }
 
 export { setLocalStorage, getLocalStorage, currentLanguage }
-console.log(currentLanguage);
+/* console.log(currentLanguage); */
