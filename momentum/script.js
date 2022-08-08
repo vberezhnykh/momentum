@@ -2,7 +2,7 @@ import { showTime } from "./modules/time_and_date.js";
 import { setLocalStorage, getLocalStorage, currentLanguage } from "./modules/local_storage.js";
 import { getWeather } from "./modules/weather.js";
 import { getQuotes, changeQuote, randomQuote } from "./modules/get_quote.js";
-import { playAudio, togglePause, togglePauseArrow, playNext, playPrev, audio, button } from "./modules/audio-player.js";
+import { playAudio, togglePause, togglePauseArrow, playNext, playPrev, audio, button, playSong } from "./modules/audio-player.js";
 import {addPlaylistItem, showCurrentTime, animateProgressBar, setDurationAndVolume, animateVolumeSlider, muteAudio} from './modules/audio-player_advanced.js';
 import playList from "./modules/playList.js";
 import { getLinkToImageUnsplash, getLinkToImageFlickr } from './modules/flickr_unsplashAPI.js'
@@ -63,7 +63,6 @@ buttonPrev.addEventListener('click', togglePauseArrow)
 playerNext.addEventListener('click', playNext)
 playerPrev.addEventListener('click', playPrev);
 
-
 // Advanced audio-player ==========
 playList.forEach(addPlaylistItem);
 timeline.addEventListener('click', showCurrentTime);
@@ -71,6 +70,11 @@ setInterval(animateProgressBar, 500);
 audio.addEventListener('loadeddata', setDurationAndVolume, false);
 volumeSlider.addEventListener('click', animateVolumeSlider, false);
 player.querySelector('.volume-button').addEventListener('click', muteAudio)
+
+const markers = document.querySelectorAll('.marker');
+markers.forEach(element => {
+    element.addEventListener('click', playSong);
+})
 
 // Translation ==========
 window.addEventListener('load', setInitialLanguage);

@@ -33,6 +33,7 @@ body {
 
 .player {
     width: 15%;
+    min-height: 38vh;
     border-radius: 10px;
     padding: 7px 0 7px 7px;
     display: flex;
@@ -188,14 +189,32 @@ body {
 .play-item {
     opacity: 0.7;
     list-style: none;
-    background-image: url('../assets/svg/play.svg');
     background-repeat: no-repeat;
-    text-indent: 25px;
+    /* text-indent: 25px; */
     margin-bottom: 4px;
     cursor: pointer;
     color: black;
     background-color: white;
     border-radius: 8px;
+    display: flex;
+    align-items: center;
+}
+
+/* .play-item::before {
+    content: '';
+    background: url('../assets/svg/play.svg') no-repeat;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    z-index: -1;
+    left: 33px;
+} */
+
+.marker {
+    width: 20px;
+    height: 20px;
+    margin: 4px;
+    padding: 0;
 }
 
 .play-item:hover {
@@ -205,9 +224,18 @@ body {
 .play-item__active {
     opacity: 1;
     background-color: coral;
-    background-image: url('../assets/svg/pause.svg');
     transition: 0.3s;
 }
+
+/* .play-item__active::before {
+    content: '';
+    background: url('../assets/svg/pause.svg') no-repeat;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    z-index: 1;
+    left: 33px;
+} */
 
 .weather {
     display: flex;

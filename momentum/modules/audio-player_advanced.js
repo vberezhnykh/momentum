@@ -8,9 +8,13 @@ let currentVolumePercantage = '';
 
 function addPlaylistItem(el) {
     const li = document.createElement('li');
+    const img = new Image;
     li.classList.add('play-item');
     li.textContent = el.title;
+    img.src = '../assets/svg/play.svg';
+    img.classList.add('marker');
     playListContainer.append(li);
+    li.prepend(img);
 }
 
 function showCurrentTime(e) {
@@ -39,9 +43,8 @@ function getTimeCodeFromNum (num) {
 }
 
 function setDurationAndVolume () {
-    player.querySelector('.timeBar .length').textContent = getTimeCodeFromNum(
-        audio.duration);
-        audio.volume = .75;
+    player.querySelector('.timeBar .length').textContent = getTimeCodeFromNum(audio.duration);
+    audio.volume = .75;
 }
 
 function animateVolumeSlider (e) {
