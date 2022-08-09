@@ -52,6 +52,14 @@ function changeLanguage(elem) {
         document.querySelector('.city').placeholder = 'Введите город';
         document.querySelector('.weather__provider-changable').textContent = 'По данным ';
         getWeather();
+        document.querySelector('.photos__input').placeholder = 'Найти...';
+        document.querySelector('.search-button').textContent = 'Найти';
+        document.querySelector('.todo-header__caption').textContent = 'Список дел';
+        document.querySelector('.todo-input__text').placeholder = 'Напомнить мне...';
+        document.querySelector('.todo-input__add-btn').textContent = '+';
+        document.querySelector('.inbox__header').textContent = 'Невыполненные';
+        document.querySelector('.completed__header').textContent = 'Завершенные';
+        
     } else if (elem.target === english) {
         english.classList.add('language__english--active');
         russian.classList.remove('language__russian--active');
@@ -77,6 +85,13 @@ function changeLanguage(elem) {
         document.querySelector('.city').placeholder = 'Enter city';
         document.querySelector('.weather__provider-changable').textContent = 'Provided by ';
         getWeather();
+        document.querySelector('.photos__input').placeholder = 'Search for...';
+        document.querySelector('.search-button').textContent = 'Search';
+        document.querySelector('.todo-header__caption').textContent = 'To-Do List';
+        document.querySelector('.todo-input__text').placeholder = 'Task...';
+        document.querySelector('.todo-input__add-btn').textContent = 'Add';
+        document.querySelector('.inbox__header').textContent = 'Inbox';
+        document.querySelector('.completed__header').textContent = 'Completed';
     }
 }
 

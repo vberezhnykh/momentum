@@ -1,3 +1,5 @@
+import { currentLanguage } from "./translation.js";
+
 function openTodoList() {
     const todoList = document.querySelector('.todo');
     const openBtn = document.querySelector('.todo__open-btn');
@@ -28,7 +30,7 @@ function loadTasks() {
 
         if (completedValue === false) {
             createItem();
-            const text = document.querySelector/* All */('.inbox__task-text--unset');
+            const text = document.querySelector('.inbox__task-text--unset');
             text.textContent = textValue;
             text.classList.remove('inbox__task-text--unset');
             text.classList.add('inbox__task-text');
@@ -38,7 +40,7 @@ function loadTasks() {
     
             if (inboxHeaders.length < 1) {
                 inbox.prepend(inboxHeader);
-                inboxHeader.textContent = 'Inbox';
+                currentLanguage === 'english' ? inboxHeader.textContent = 'Inbox' : inboxHeader.textContent = 'Невыполненные';
                 inboxHeader.classList.add('inbox__header');
             }
         } else if (completedValue === true) {
@@ -65,7 +67,7 @@ function loadTasks() {
             if (!completed.contains(completedHeader)) {
                 const header = document.createElement('h2');
                 header.classList.add('completed__header');
-                header.textContent = 'Completed';
+                currentLanguage === 'english' ? header.textContent = 'Completed' : header.textContent = 'Завершенные';
                 completed.prepend(header);
             }
         }
@@ -138,7 +140,7 @@ function addTask() {
     
         if (inboxHeaders.length < 1) {
             inbox.prepend(inboxHeader);
-            inboxHeader.textContent = 'Inbox';
+            currentLanguage === 'english' ? inboxHeader.textContent = 'Inbox' : inboxHeader.textContent = 'Невыполненные';
             inboxHeader.classList.add('inbox__header');
         }
         taskText.value = '';
@@ -194,7 +196,7 @@ function completeTask(elem) {
     if (!completed.contains(completedHeader)) {
         const header = document.createElement('h2');
         header.classList.add('completed__header');
-        header.textContent = 'Completed';
+        currentLanguage === 'english' ? header.textContent = 'Completed' : header.textContent = 'Завершенные';
         completed.prepend(header);
     }
 
@@ -230,7 +232,7 @@ function completeTask(elem) {
     const inbox = document.querySelector('.inbox');
     if (inboxItems.length > 0 && !inbox.contains(inboxHeader)) {
         const inboxHeader = document.createElement('h2');
-        inboxHeader.textContent = 'Inbox';
+        currentLanguage === 'english' ? inboxHeader.textContent = 'Inbox' : inboxHeader.textContent = 'Невыполненные';
         inboxHeader.classList.add('inbox__header');
         inbox.prepend(inboxHeader);
     }

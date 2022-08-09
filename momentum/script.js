@@ -91,31 +91,33 @@ window.addEventListener('click', hideBlock)
 
 // Todo list ==========
 const openBtn = document.querySelector('.todo__open-btn');
-openBtn.addEventListener('click', openTodoList)
+const closeToDoListBtn = document.querySelector('.todo-header__close-btn');
 const addTaskButton = document.querySelector('.todo-input__add-btn');
-addTaskButton.addEventListener('click', addTask);
 const input = document.querySelector('.todo-input__text');
+
+openBtn.addEventListener('click', openTodoList);
+closeToDoListBtn.addEventListener('click', closeToDoList);
+addTaskButton.addEventListener('click', addTask);
+
 input.addEventListener('keypress', (event) => {
     event.key === 'Enter' ? addTaskButton.click() : false;
     event.key === 'Enter' ? input.value = '' : false;
 })
-const closeToDoListBtn = document.querySelector('.todo-header__close-btn');
-closeToDoListBtn.addEventListener('click', closeToDoList);
 
 //==========
-/* console.log(
+console.log(
 `1. Часы и календарь + 15;
 2. Приветствие + 10;
 3. Смена фонового изображения +20;
 4. Виджет погоды. +15;
 5. Виджет цитата дня. + 10;
 6. Аудиопдеер + 15;
-7. Продвинутый аудиоплеер +17. (не реализован функционал проигрывания трека кликом по кнопке Play/Pause рядом с ним в плейлисте);
+7. Продвинутый аудиоплеер +20;
 8. Перевод приложения на два языка (en/ru) + 15.
 9. Получение фонового изображения от API. +10;
-10. Настройки приложения +12. (1) не реализовано указание тега для которых API присылает фото; 2) настройки не сохраняются при перезагрузке страницы);
+10. Настройки приложения +16. - настройки не сохраняются при перезагрузке страницы;
 11. Дополнительный функционал + 10;
 
-Итого: 149 балла.`
-) */
+Итого: 156 балла.`
+)
 

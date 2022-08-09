@@ -1,4 +1,3 @@
-/* import { currentLanguage } from './translation.js'; */
 import { currentLanguage } from "./local_storage.js";
 
 async function getWeather() {
@@ -8,6 +7,7 @@ async function getWeather() {
     const wind = document.querySelector('.wind');
     const humidity = document.querySelector('.humidity');
     const city = document.querySelector('.city');
+    const weatherBlock = document.querySelector('.weather__main-info');
     let language = '';
     if (currentLanguage === 'english') {
         language = 'en';
@@ -30,15 +30,18 @@ async function getWeather() {
             wind.textContent = `Скорость ветра: ${Math.floor(data.wind.speed)} м/с`;
             humidity.textContent = `Влажность: ${Math.floor(data.main.humidity)} %`;
         }
+        weatherBlock.classList.remove('weather__main-info--errored');
     } else if (data.cod === '404' || city.value === '') {
         if (currentLanguage === 'english') {
             temperature.textContent = `${data.message}`;
+            weatherBlock.classList.add('weather__main-info--errored');
             weatherIcon.className = 'icon owf';
             weatherDescription.textContent = '';
             wind.textContent = '';
-            humidity.textContent = ''
+            humidity.textContent = '';
         } else if (currentLanguage === 'russian' || city.value === '') {
-            temperature.textContent = 'Неверно указан город'
+            temperature.textContent = 'Неверно указан город';
+            weatherBlock.classList.add('weather__main-info--errored');
             weatherIcon.className = 'icon owf';
             weatherDescription.textContent = '';
             wind.textContent = '';
