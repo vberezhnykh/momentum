@@ -17,13 +17,11 @@ function playAudio() {
         const markers = document.querySelectorAll('.marker');
         markers[playNum].src = 'assets/svg/pause.svg';
         isPlay = true;
-        console.log(audio.volume);
     } else {
         audio.pause();
         const playItem = document.querySelector(`.play-item:nth-child(${playNum + 1})`)
         playItem.classList.remove('play-item__active');
         isPlay = false;
-        console.log(audio.volume);
     }
     
 }

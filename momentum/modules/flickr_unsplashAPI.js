@@ -6,7 +6,7 @@ let newSetOfPhotos = [];
 
 async function getLinkToImageUnsplash() {
     const timeOfDayUpperCase = getTimeOfDay();
-    const timeOfDay = timeOfDayUpperCase.toLowerCase();
+    const timeOfDay = `${timeOfDayUpperCase}`.toLowerCase();
     let url;
     if (tags === undefined) {
         url = `https://api.unsplash.com/photos/random?orientation=landscape&query=${timeOfDay}+nature&count=30&client_id=I3eBqT9_j8CoW8DuszAU_zsxllH3odilxkh7kNZ8ETE`;
