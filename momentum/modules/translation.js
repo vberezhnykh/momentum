@@ -3,7 +3,7 @@ import {getQuotes} from './get_quote.js';
 import {isPlay} from './audio-player.js';
 
 let currentLanguage = '';
-if (localStorage.language !== '') {
+if (localStorage.language !== '' && window.localStorage.length !== 0) {
     currentLanguage = localStorage.language;
 } else {
     currentLanguage = 'english';
@@ -57,8 +57,8 @@ function changeLanguage(elem) {
         document.querySelector('.todo-header__caption').textContent = 'Список дел';
         document.querySelector('.todo-input__text').placeholder = 'Напомнить мне...';
         document.querySelector('.todo-input__add-btn').textContent = '+';
-        document.querySelector('.inbox__header').textContent = 'Невыполненные';
-        document.querySelector('.completed__header').textContent = 'Завершенные';
+        document.querySelector('.inbox__header') !== null ? document.querySelector('.inbox__header').textContent = 'Невыполненные' : false;
+        document.querySelector('.completed__header') !== null ? document.querySelector('.completed__header').textContent = 'Завершенные' : false;
         
     } else if (elem.target === english) {
         english.classList.add('language__english--active');
@@ -90,8 +90,8 @@ function changeLanguage(elem) {
         document.querySelector('.todo-header__caption').textContent = 'To-Do List';
         document.querySelector('.todo-input__text').placeholder = 'Task...';
         document.querySelector('.todo-input__add-btn').textContent = 'Add';
-        document.querySelector('.inbox__header').textContent = 'Inbox';
-        document.querySelector('.completed__header').textContent = 'Completed';
+        document.querySelector('.inbox__header') !== null ? document.querySelector('.inbox__header').textContent = 'Inbox' : false;
+        document.querySelector('.completed__header') !== null ? document.querySelector('.completed__header').textContent = 'Completed' : false;
     }
 }
 

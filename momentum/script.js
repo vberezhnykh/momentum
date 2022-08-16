@@ -1,5 +1,5 @@
 import { showTime } from "./modules/time_and_date.js";
-import { setLocalStorage, getLocalStorage, currentLanguage } from "./modules/local_storage.js";
+import { setLocalStorage, getLocalStorage} from "./modules/local_storage.js";
 import { getWeather } from "./modules/weather.js";
 import { getQuotes, changeQuote, randomQuote } from "./modules/get_quote.js";
 import { playAudio, togglePause, togglePauseArrow, playNext, playPrev, audio, button, playSong } from "./modules/audio-player.js";
@@ -7,11 +7,9 @@ import {addPlaylistItem, showCurrentTime, animateProgressBar, setDurationAndVolu
 import playList from "./modules/playList.js";
 import { getLinkToImageUnsplash, getLinkToImageFlickr } from './modules/flickr_unsplashAPI.js'
 import { getRandomNum, setBg, choosePhotoSource, getSlideNext, getSlidePrev} from './modules/background-slider.js'
-import { changeLanguage, setInitialLanguage } from './modules/translation.js';
+import { changeLanguage, setInitialLanguage, currentLanguage } from './modules/translation.js';
 import {hideSettings, showSettings, hideBlock, isHidden} from './modules/settings.js';
 import {openTodoList,addTask, closeToDoList} from './modules/todo.js';
-
-/* window.onload = isHidden; */
 
 // Local storage ==========
 window.addEventListener('beforeunload', setLocalStorage);

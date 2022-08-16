@@ -1,4 +1,3 @@
-/* import { currentLanguage } from './translation.js' */
 import { currentLanguage } from "./local_storage.js";
 
 function getTimeOfDay() {
