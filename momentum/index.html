@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/owfont-regular.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body class="body">
+    <div class="wrapper">
+        <header class="header">
+            <div class="player">
+                <div class="player-controls">
+                    <button class="player-previous"></button>
+                    <button class="player-icon play"></button>
+                    <button class="player-next"></button>
+                </div>
+                <div class="songName">Music Song</div>
+                <div class="timeline">
+                    <div class="progress"></div>
+                </div>
+                <div class="player__additional-controls">
+                    <div class="timeBar">
+                        <div class="current">0:00</div>
+                        <div class="divider">/</div>
+                        <div class="length">0:00</div>
+                    </div>
+                    <div class="volume-container">
+                        <button class="volume-button"></button>
+                        <div class="volume-slider">
+                            <div class="volume-percantage"></div>
+                        </div>
+                    </div>
+                </div>
+                <ul class="play-list"></ul>
+            </div>
+            <div class="weather">
+                <input type="text" class="city" value="London" placeholder="Enter city">
+                <div class="weather__main-info">
+                    <i class="icon owf"></i>
+                    <div class="temperature_and_description_container">
+                        <div class="temperature"></div>
+                        <div class="description"></div>
+                    </div> 
+                </div>
+                <div class="weather__extra-info">
+                    <div class="wind"></div>
+                    <div class="humidity"></div>
+                </div>
+                <span class="weather__provider"><span class = 'weather__provider-changable'>Provided by </span><a href="https://openweathermap.org/" target="_blank">OpenWeather</a></span>
+            </div>
+        </header>
+        <main class="main">
+            <time class="time"></time>
+            <date class="date"></date>
+            <div class="greeting-container">
+                <span class="greeting">Greeting</span>
+                <input class="input" type="text" placeholder="[Enter name]">
+            </div> 
+            <div class="slider">
+                <img class="previousSlide" src="assets/svg/slider-prev.svg" alt="">
+                <img class="nextSlide" src="assets/svg/slider-next.svg" alt="">
+            </div>
+        </main>
+        <footer class="footer">
+            <div class="settings">
+                <button class="settings__button"></button>
+                <div class="settings__menu">
+                    <div class="settings-header">
+                        <h2 class="settings-header__header">SETTINGS</h2>
+                        <button class="settings-header__button"></button>
+                    </div>
+                    <div class="hide_block">
+                        <div class="hide_block__name">Hide</div>
+                        <div class="hide_block__player">Player</div>
+                        <div class="hide_block__weather">Weather</div>
+                        <div class="hide_block__time">Time</div>
+                        <div class="hide_block__date">Date</div>
+                        <div class="hide_block__greeting">Greeting</div>
+                        <div class="hide_block__quotes">Quotes</div>
+                        <div class="hide_block__todo-list">Todo List</div>
+                    </div>
+                    <div class="language">
+                        <div class="language__name">Language</div>
+                        <div class="language__english language__english--active">English</div>
+                        <div class="language__russian">Russian</div>
+                    </div>
+                    <div class="photos">
+                        <div class="photos__name">Photo source</div>
+                        <div class="photos__github photos__github--active">Github</div>
+                        <div class="photos__flickr">Flickr</div>
+                        <div class="photos__unsplash">Unsplash</div>
+                    </div>
+                    <div class="search search--hidden">
+                        <input class="photos__input" type="text" placeholder="Search for...">
+                        <button class="search-button">Search</button>
+                    </div>
+                </div>
+            </div>
+            <div class="social-media-wrapper">
+                <ul class="social-media">
+                    <li class="social-media__github"><a href="https://github.com/vberezhnykh" target="_blank"><img src="assets/svg/github.svg" alt=""></a></li>
+                    <li class="social-media__rs-school"><a href="https://rs.school/js-stage0/" target="_blank"><img src="assets/svg/rs-school.svg" alt=""></a></li>
+                </ul>
+            </div>
+            <div class="quote-wrapper">
+                <button class="change_quote"></button>
+                <div class="quote"></div>
+                <div class="author"></div>
+            </div>
+            <div class="todo">
+                <div class="todo-header">
+                    <h2 class="todo-header__caption">To-Do List</h2>
+                    <button class="todo-header__close-btn"></button>
+                </div>
+                <div class="todo-input">
+                    <input class="todo-input__text" type="text" placeholder="Task...">
+                    <button class="todo-input__add-btn" type="submit">Add</button>
+                </div>
+                <div class="inbox">
+                    <ul class="inbox__list">
+                    </ul>
+                </div>
+                <div class="completed">
+                    <ul class="completed__list"></ul>
+                </div>
+            </div>
+            <button class="todo__open-btn"></button>
+        </footer>
+    </div> 
+    <script type="module" src="script.js"></script>
+</body>
+</html>
