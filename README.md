@@ -1,6 +1,8 @@
 
 # Momentum
 
+![image](https://user-images.githubusercontent.com/53420013/187085708-729c5b93-8e6b-401a-848c-5deeccbd18e1.png)
+
 Аналог одноимённого приложения интернет-магазина Chrome.
 Проект выполнен в рамках обучения в RS School (https://rs.school/js-stage0/).
 
